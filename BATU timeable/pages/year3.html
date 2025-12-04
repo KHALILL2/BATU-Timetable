@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BATU University IT Department - Year 3 Timetable">
+    <title>Year 3 Timetable</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/BATU_logo.png">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/BATU_logo.png" alt="BATU" height="35" class="me-2">
+                BATU | IT Timetable
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="../index.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="year1.html"><i class="fas fa-calendar-alt"></i> Year 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="year2.html"><i class="fas fa-calendar-alt"></i> Year 2</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark active" href="#" id="year3Dropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-calendar-alt"></i> Year 3
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#software">Software Engineering</a></li>
+                            <li><a class="dropdown-item" href="#network">Network Engineering</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="year4Dropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-calendar-alt"></i> Year 4
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="year4.html#software">Software Engineering</a></li>
+                            <li><a class="dropdown-item" href="year4.html#network">Network Engineering</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header text-center">
+        <div class="container">
+            <h1><i class="fas fa-bookmark"></i> Third Year Timetable</h1>
+            <p class="lead">Choose your path: Software Engineering or Network Engineering!</p>
+        </div>
+    </section>
+
+    <!-- Major Selection Tabs -->
+    <section class="container my-4">
+        <div class="major-tabs">
+            <ul class="nav nav-tabs justify-content-center" id="majorTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="software-tab" data-bs-toggle="tab" data-bs-target="#software" type="button" role="tab">
+                        <i class="fas fa-laptop-code"></i> Software Engineering
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="network-tab" data-bs-toggle="tab" data-bs-target="#network" type="button" role="tab">
+                        <i class="fas fa-network-wired"></i> Network Engineering
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tab Content -->
+    <div class="container">
+        <div class="tab-content" id="majorTabContent">
+            <!-- Software Engineering Tab -->
+            <div class="tab-pane fade show active" id="software" role="tabpanel">
+                <!-- Saturday Schedule -->
+                <div class="day-schedule saturday">
+                    <h4><i class="fas fa-calendar-day"></i> Saturday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3SWSaturday">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3SWSaturday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Monday Schedule -->
+                <div class="day-schedule monday">
+                    <h4><i class="fas fa-calendar-day"></i> Monday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3SWMonday">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3SWMonday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tuesday Schedule -->
+                <div class="day-schedule tuesday">
+                    <h4><i class="fas fa-calendar-day"></i> Tuesday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3SWTuesday">
+                            <thead class="table-warning">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3SWTuesday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Engineering Tab -->
+            <div class="tab-pane fade" id="network" role="tabpanel">
+                <!-- Saturday Schedule -->
+                <div class="day-schedule saturday">
+                    <h4><i class="fas fa-calendar-day"></i> Saturday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3NETSaturday">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3NETSaturday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Monday Schedule -->
+                <div class="day-schedule monday">
+                    <h4><i class="fas fa-calendar-day"></i> Monday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3NETMonday">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3NETMonday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tuesday Schedule -->
+                <div class="day-schedule tuesday">
+                    <h4><i class="fas fa-calendar-day"></i> Tuesday Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table timetable-table table-hover table-striped" id="timetableYear3NETTuesday">
+                            <thead class="table-warning">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Class</th>
+                                    <th>Division</th>
+                                    <th>Subject</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetableBody3NETTuesday">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="courseModalLabel">
+                        <i class="fas fa-book"></i> Course Details
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="courseModalBody">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="text-primary mb-3" id="modalCourseCode"></h6>
+                            <h5 class="mb-3" id="modalCourseTitle"></h5>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fas fa-info-circle"></i> Course Information</h6>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="mb-2"><strong><i class="fas fa-graduation-cap"></i> Credits:</strong> <span id="modalCredits"></span></p>
+                                            <p class="mb-2"><strong><i class="fas fa-calendar"></i> Semester:</strong> <span id="modalSemester"></span></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-2"><strong><i class="fas fa-clock"></i> Total Hours:</strong> <span id="modalTotalHours"></span></p>
+                                            <p class="mb-2"><strong><i class="fas fa-layer-group"></i> Year:</strong> <span id="modalYear"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <p class="mb-1"><strong><i class="fas fa-clock"></i> Weekly Breakdown:</strong></p>
+                                        <p class="mb-0 text-muted small" id="modalHoursBreakdown"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3" id="modalDescriptionSection">
+                                <h6><i class="fas fa-align-left"></i> Description</h6>
+                                <p class="text-muted" id="modalDescription"></p>
+                            </div>
+                            
+                            <div id="modalTopicsSection">
+                                <h6><i class="fas fa-list"></i> Topics Covered</h6>
+                                <ul class="text-muted" id="modalTopics"></ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fas fa-calendar-alt"></i> Class Details</h6>
+                                    <p class="mb-2"><strong>Day:</strong> <span id="modalDay"></span></p>
+                                    <p class="mb-2"><strong>Time:</strong> <span id="modalTime"></span></p>
+                                    <p class="mb-2"><strong>Room:</strong> <span id="modalRoom"></span></p>
+                                    <p class="mb-2"><strong>Instructor:</strong> <span id="modalInstructor"></span></p>
+                                    <p class="mb-2"><strong>Type:</strong> <span id="modalType" class="badge"></span></p>
+                                    <p class="mb-0"><strong>Group:</strong> <span id="modalGroup"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-university"></i> BATU</h5>
+                    <p class="text-white-50 mb-1">Borg El Arab Technological University</p>
+                    <p class="text-white-50 mb-1"><small>Information Technology Department</small></p>
+                    <p class="mb-0"><a href="https://batechu.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fas fa-globe"></i> batechu.com</a></p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-link"></i> Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://batechu.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fas fa-globe"></i> University Website</a></li>
+                        <li><a href="https://www.facebook.com/share/19xwknE4sP/" target="_blank" class="text-white-50 text-decoration-none"><i class="fab fa-facebook"></i> BATU Facebook</a></li>
+                        <li><a href="https://www.facebook.com/share/1K3REfCKvX/" target="_blank" class="text-white-50 text-decoration-none"><i class="fab fa-facebook"></i> IT Department Facebook</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-code"></i> Developed By</h5>
+                    <p class="text-white-50 mb-2">
+                        <strong>Team NEXUS</strong><br>
+                        <i class="fas fa-user"></i> <a href="https://linktr.ee/khalill2" target="_blank" class="text-white-50 text-decoration-none">Khalil Muhammad</a><br>
+                        <i class="fas fa-user"></i> Mohammed Ali<br>
+                        <small>IT Students - BATU</small>
+                    </p>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="mb-1">Made with <i class="fas fa-heart text-danger"></i> for IT Students</p>
+                    <p class="mb-1"><small><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/1A7ownCfrrVRvsDx9" target="_blank" class="text-white-50 text-decoration-none">Borg El Arab Technological University | New Borg El Arab, Alexandria, Egypt</a></small></p>
+                    <p class="text-white-50 small mb-0">© 2025 Team NEXUS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <!-- Courses Database -->
+    <script src="../js/courses-data.js"></script>
+    <!-- Custom JS - Must load before data files -->
+    <script src="../js/main.js"></script>
+    <!-- Year 3 Data - Loads after main.js -->
+    <script src="../js/year3-data.js"></script>
+</body>
+</html>
