@@ -1,73 +1,74 @@
-# BATU IT Timetable 📅
+# BATU IT Timetable
 
-## Hey! 👋
+A responsive web application for managing and viewing class schedules for BATU IT Department students across all four years.
 
-So this is our Web Programming project. We're Khalil and Mohammed, 2nd year IT students at BATU, and we built this website to help students (including ourselves lol) check our class schedules without having to dig through WhatsApp groups or ask the group admin every time.
+## Overview
 
-**Who made this:**
-- Khalil Muhammad - 2nd Year IT
-- Mohammed Ali - 2nd Year IT  
+This project was developed as part of our Web Programming course at Borg Al Arab Technological University (BATU). It provides an intuitive interface for students to access their class schedules, filter by groups and classes, and view detailed course information.
 
-**What it's for:** Web Programming Course Project  
-**When:** Fall 2025/2026  
-**Where:** Borg El Arab Technological University (BATU), Alexandria, Egypt
+**Developers:**
+- Khalil Muhammad (ID: 2420407)
+- Mohammed Ali (ID: 2421066)
 
-### Quick Info About BATU 🏛️
-
-Our university started in 2022 (yeah, it's pretty new!). It's one of those technological universities that focus more on practical stuff rather than just theory. We're in Borg El Arab, Alexandria - the campus is huge (42,000 square meters!) with modern labs, workshops, and everything we need.
-
-The whole idea is to get us ready for actual jobs in tech, not just memorize textbooks. That's why we get to do projects like this one!
+**Institution:** Borg Al Arab Technological University, Alexandria, Egypt  
+**Department:** Information Technology  
+**Academic Year:** 2025/2026 (Fall Semester)
 
 ---
 
 ## 🎓 Timetable Structure
 
-### Year 1 - Foundation Year
+### Year 1 - Foundation Year ✅
 - **3 Groups**, each with **4 Classes** (some with A/B divisions)
-- Subjects: Python Programming, Math, Physics, IT, English, Cyber Security
-- Fully implemented with Fall 2025/2026 schedule
+## Academic Structure
 
-### Year 2 - Core Studies  
-- **4 Groups**, each with **4 Classes**
-- Advanced programming, databases, data structures, web development
-- *Data entry pending*
+The application covers the complete 4-year IT program structure:
+
+### Year 1 - Foundation
+- 3 Groups × 4 Classes (with A/B divisions)
+- Schedule: Saturday, Sunday, Wednesday
+- Core subjects: Python, Math, Physics, IT Fundamentals, English, Cyber Security
+- Status: Complete (57 entries)
+
+### Year 2 - Core Studies
+- 4 Groups × 4 Classes
+- Schedule: Saturday, Monday, Tuesday  
+- Subjects: OS, Digital Engineering, Web Dev, C++, Data Structures, Databases
+- Status: Complete (82 entries)
 
 ### Year 3 - Specialization
-- **2 Tracks:** Software Engineering OR Network Engineering
-- Each track has its own group and class structure
-- *Data entry pending*
+- Software Engineering Track (27 entries)
+- Network Engineering Track (20 entries)
+- Schedule: Saturday, Monday, Tuesday
+- Status: Complete for both tracks
 
-### Year 4 - Advanced & Graduation
-- **2 Tracks:** Software Engineering OR Network Engineering  
-- Final year courses + graduation project
-- *Data entry pending*
+### Year 4 - Advanced
+- Software Engineering Track (21 entries)
+- Network Engineering Track (28 entries)
+- Schedule: Saturday, Sunday, Wednesday
+- Status: Complete for both tracks
 
----
+## Features
 
-## What We Built ✨
+### Core Functionality
+- **Responsive Design** - Mobile-first approach, works on all devices
+- **Personal Schedule Builder** - Select year/group/class to generate individual schedules
+- **Day-Separated Layout** - Color-coded tables for each day (Blue/Green/Yellow)
+- **Real-time Search** - Instant filtering across courses, instructors, and rooms
+- **Smart Filters** - Group and Class filters for Years 1-2
+- **Track Navigation** - Tab-based switching between Software and Network tracks (Years 3-4)
+- **Course Details** - Modal popups with complete course information
+- **12-Hour Time Format** - User-friendly AM/PM time display
+- **URL Parameters** - Direct links to specific filtered views
+- **Persistent State** - LocalStorage integration for user preferences
 
-### The Main Stuff
-- 📱 **Mobile-Friendly** - Works on your phone (because let's be honest, nobody checks schedules on laptops anymore)
-- 🔍 **Search Bar** - Type anything - course name, instructor, room number - and it finds it
-- 📅 **Day Filters** - Only want to see Saturday classes? Done.
-- 🎯 **Track Tabs** - For Year 3 & 4 - easy switch between Software and Network Engineering
-- 💾 **Remembers You** - Saves your last view so you don't have to select everything again
-- 📖 **Course Info** - Click any class to see full details, instructor, room, everything
-- ⏰ **12-Hour Format** - Times show as 9:00 AM instead of military time (we're not in the army!)
-
-### What's Inside
-- **Homepage** - Overview of all years and a schedule builder
-- **Year 1 & 2 Pages** - All groups and classes with filters
-- **Year 3 & 4 Pages** - Separated by major (Software or Network)
-- **Each schedule is organized by day** - Saturday, Sunday/Monday, Tuesday/Wednesday
-
-### Cool JavaScript Tricks We Added
-- Real-time search (no refresh needed!)
-- Filter dropdown that actually works
-- Tab switching for majors
-- Smooth scroll animations (looks fancy, right?)
-- Mobile menu that collapses
-- Performance optimization so it doesn't lag
+### Technical Implementation
+- Modular JavaScript architecture with separate data files per year
+- Custom `loadTimetableByDays()` function for day-separated rendering
+- Debounced search for performance optimization
+- Bootstrap 5 components with custom CSS enhancements
+- Font Awesome icon integration
+- Cross-browser compatibility
 ## Tech Stack 🛠️
 
 ### What We Used
@@ -79,25 +80,43 @@ The whole idea is to get us ready for actual jobs in tech, not just memorize tex
 
 ### Tools We Worked With
 - **VS Code** - Best editor, fight me
-- **GitHub** - Where all our code lives (and where we learned about merge conflicts the hard way)
-- **Git** - For version control (took us a while to get used to it tbh)
-- **Chrome DevTools** - Spent half our time here debugging 😅
+## Technology Stack
 
-### Shoutout
-We took some inspiration from other university timetable websites but added our own twist to make it unique for BATU!
-- Professional academic dashboard aesthetic
+### Frontend
+- **HTML5** - Semantic markup
+- **CSS3** - Custom styling with CSS variables
+- **Bootstrap 5** - Responsive framework
+- **JavaScript (ES6+)** - Vanilla JS, no frameworks
+- **Font Awesome** - Icon library
 
----
-
-## 📁 Project Structure
-
-```
-BATU timeable/
-│
-├── index.html                 # Home page with year overview
-├── css/
-│   ├── bootstrap.min.css      # Bootstrap 5 framework
+### Development Tools
+- VS Code
+- Git & GitHub
+- Chrome DevTools
+- Live Server (for local development)5 framework
 │   ├── all.min.css            # Font Awesome icons
+│   └── main.css               # Our custom styles (day-separated tables, animations, etc.)
+│
+├── js/
+│   ├── bootstrap.bundle.min.js # Bootstrap JavaScript
+│   ├── all.min.js             # Font Awesome JavaScript
+│   ├── main.js                # Core functions (search, filters, loadTimetableByDays, etc.)
+│   ├── courses-data.js        # Complete course database (80+ courses, credits, hours)
+│   ├── year1-data.js          # Year 1 data (3 groups, ~57 entries)
+│   ├── year2-data.js          # Year 2 data (4 groups, 82 entries)
+│   ├── year3-data.js          # Year 3 data (SW: 27, NET: 20 entries)
+│   └── year4-data.js          # Year 4 data (SW: 21, NET: 28 entries)
+│
+├── pages/
+│   ├── year1.html             # Year 1 page (3 day-separated tables)
+│   ├── year2.html             # Year 2 page (3 day-separated tables)
+│   ├── year3.html             # Year 3 page (6 day-separated tables - 3 per track)
+│   └── year4.html             # Year 4 page (6 day-separated tables - 3 per track)
+│
+├── images/                    # BATU logo, IT logo, Faculty logo
+├── webfonts/                  # Font Awesome font files
+└── README.md                  # This file!
+```
 │   └── main.css               # Custom styles
 │
 ├── js/
@@ -138,33 +157,25 @@ BATU timeable/
 3. Done!
 
 **Fancy Way (for developers):**
-1. Clone it:
-   ```bash
-   git clone https://github.com/KHALILL2/BATU-Timetable.git
-   cd BATU-Timetable
-   ```
+## Getting Started
 
-2. If you have VS Code:
-   - Install "Live Server" extension
-   - Right-click `index.html` → "Open with Live Server"
-   - It opens at `http://localhost:5500`
+### Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/KHALILL2/BATU-Timetable.git
 
-3. Edit whatever you want in the code!
----
+# Navigate to project directory
+cd BATU-Timetable
 
-## 🌐 Deployment to GitHub Pages
+# Open in browser
+# Simply open index.html in your browser
+# Or use Live Server extension in VS Code
+```
 
-### Method 1: GitHub Web Interface
-
-1. **Create a new repository on GitHub:**
-   - Go to [GitHub.com](https://github.com)
-   - Click "New Repository"
-   - Name: `batu-timetable` (or your preferred name)
-   - Make it **Public**
-   - Click "Create repository"
-
-2. **Upload your files:**
-   - Click "uploading an existing file"
+### Local Development
+1. Install VS Code Live Server extension (optional but recommended)
+2. Right-click on `index.html` → "Open with Live Server"
+3. Application will run at `http://localhost:5500`"
    - Drag and drop all project files
    - Commit changes
 
@@ -341,17 +352,22 @@ Just two IT students trying to make life easier for everyone (and get a good gra
 **University:** Borg El Arab Technological University, Alexandria, Egypt  
 **Made in:** December 2025ming
 - **Date:** December 2025
+## Contributors
 
-## 📝 Code Quality
+**Team NEXUS**
 
-### HTML Standards
-- Semantic HTML5 elements
-- Proper nesting and indentation
-- Accessibility attributes (aria-labels)
-- SEO-friendly meta tags
+- Khalil Muhammad (ID: 2420407) - 2nd Year IT Student
+- Mohammed Ali (ID: 2421066) - 2nd Year IT Student
 
-### CSS Best Practices
-- Mobile-first responsive design
+**Institution:** Borg Al Arab Technological University  
+**Location:** New Borg El Arab, Alexandria, Egypt  
+**Department:** Information Technology  
+**Year:** 2nd Year (Fall 2025/2026)
+
+## Contact
+
+- **Repository:** [github.com/KHALILL2/BATU-Timetable](https://github.com/KHALILL2/BATU-Timetable)
+- **Issues:** Feel free to open an issue for bugs or feature requestsdesign
 - CSS custom properties for theming
 - BEM-like naming conventions
 - Cross-browser compatibility
@@ -401,22 +417,13 @@ This is our course project, but if you're a BATU student and see something that 
 Got questions? Want to roast our code? Hit us up:
 
 - **GitHub Repo:** [BATU-Timetable](https://github.com/KHALILL2/BATU-Timetable)
-- **Khalil Muhammad** - Find me in the IT labs usually
-- **Mohammed Ali** - Same, probably debugging something
+- **Khalil Muhammad** - ID: 2420407 | Find me in the IT labs usually
+- **Mohammed Ali** - ID: 2421066 | Same, probably debugging something
 
-We're 2nd year students, so be nice 😅
-## 🎓 Thanks To
-## Big Thanks To 🙏
-
-- **Our Web Programming Instructor** - For teaching us all this and being patient with our questions
-- **BATU IT Department** - For the labs, wifi, and letting us stay late to finish this
-- **Our Classmates** - For testing the site and telling us when stuff broke
-- **Bootstrap Team** - Seriously saved us so much time
-- **Font Awesome** - For all the icons
-- **Stack Overflow** - You KNOW why 😂
-- **YouTube** - For those "how to fix..." tutorials at 2 AM
-- **Coffee** - The real MVP
----
+**University:** Borg Al Arab Technological University (BATU)  
+**Location:** New Borg El Arab, Alexandria, Egypt  
+**Department:** Information Technology  
+**Year:** 2nd Year (Fall 2025/2026)
 
 ## 📚 Additional Resources
 
@@ -426,39 +433,28 @@ We're 2nd year students, so be nice 😅
 - [JavaScript.info](https://javascript.info/)
 - [CSS-Tricks](https://css-tricks.com/)
 
-### Tools Used
-- [VS Code](https://code.visualstudio.com/)
-- [Git](https://git-scm.com/)
-- [GitHub Pages](https://pages.github.com/)
-- [Font Awesome](https://fontawesome.com/)
+## 🏆 What We Actually Achieved
 
----
+- ✅ **5 Complete Pages** - Homepage + 4 year pages, all fully functional
+- ✅ **200+ Schedule Entries** - Every single class for all 4 years, all groups, all tracks
+- ✅ **100% Responsive** - Tested on phones, tablets, laptops - works everywhere
+- ✅ **Advanced JavaScript** - Multiple features: search, filters, tabs, modals, localStorage, URL params
+- ✅ **Day-Separated Layout** - Organized schedules by day for better readability  
+- ✅ **Personal Schedule Builder** - Interactive tool on homepage
+- ✅ **Course Database** - Complete metadata for 80+ courses
+- ✅ **GitHub Pages Ready** - All relative paths, deployed and live
+- ✅ **12-Hour Time Format** - User-friendly AM/PM display
+- ✅ **Clean Code** - Well-organized, commented, and maintainable
+- ✅ **No Errors** - Tested and debugged (fixed that `formatTime()` bug!)
+- ✅ **GitHub Integration** - Link in footer, proper version control
 
-## 🏆 Project Achievements
-
-✅ **5+ Pages** - Exceeds minimum requirement  
+**Lines of Code Written:** Thousands (we lost count tbh)  
+**Hours Spent:** Way more than we planned  
+**Bugs Fixed:** Too many to count  
+**Coffee Consumed:** ☕☕☕☕☕
 ✅ **Fully Responsive** - Works on all devices  
 ✅ **JavaScript Interactivity** - Multiple interactive features  
 ✅ **Clean Code Structure** - Well-organized and commented  
 ✅ **GitHub Pages Ready** - Relative paths, deployment-ready  
-✅ **Modern Design** - Professional university aesthetic  
-✅ **LocalStorage Integration** - Enhanced user experience  
-✅ **Search Functionality** - Global and per-page search  
-✅ **Filter System** - Dynamic timetable filtering  
----
+## Project Highlights
 
-**Made with ❤️ and lots of ☕ by Khalil & Mohammed**
----
-
-**Made with ❤️ and lots of ☕ by Team NEXUS**
-
-*Khalil Muhammad & Mohammed Ali*  
-*2nd Year IT Students - BATU*  
-*December 2025*
-
-P.S. - If you find bugs, we probably already know about them but submit an issue anyway 😅  
-P.P.S. - This is our first big web project, so feedback is appreciated!
-
----
-
-*Last Updated: December 5, 2025*
