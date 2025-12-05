@@ -239,7 +239,10 @@ This is an academic project, but contributions are welcome:
 ## License
 
 This project was created for educational purposes as part of the Web Programming course at BATU University.
+<<<<<<< HEAD
 
 ---
 
 *Last Updated: December 5, 2025*
+=======
+>>>>>>> 82008f1be8a0eeaec887879b29eff23dca9dd825
