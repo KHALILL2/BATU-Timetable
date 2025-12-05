@@ -1,22 +1,22 @@
-# BATU | IT Timetable
+# BATU IT Timetable 📅
 
-## 📚 About This Project
+## Hey! 👋
 
-Hey there! This is our web programming course project - a complete timetable management system for BATU IT students. 
+So this is our Web Programming project. We're Khalil and Mohammed, 2nd year IT students at BATU, and we built this website to help students (including ourselves lol) check our class schedules without having to dig through WhatsApp groups or ask the group admin every time.
 
-**Made by:** Team NEXUS - Khalil Muhammad & Mohammed Ali (2nd Year IT Students)  
-**Course:** Web Programming  
-**University:** Borg El Arab Technological University (BATU)  
-**Semester:** Fall 2025/2026
-**Live Site:** [Will add GitHub Pages link here]
+**Who made this:**
+- Khalil Muhammad - 2nd Year IT
+- Mohammed Ali - 2nd Year IT  
 
-### About BATU 🏛️
-**Borg El Arab Technological University** was established in **2022** under Law No. 72 of 2019, which created technological universities in Egypt to provide applied/technical education aligned with labor market needs.
+**What it's for:** Web Programming Course Project  
+**When:** Fall 2025/2026  
+**Where:** Borg El Arab Technological University (BATU), Alexandria, Egypt
 
-- 📍 **Location:** Universities District, New Borg El Arab, Alexandria Governorate, Egypt
-- 🏗️ **Campus Size:** 42,000 square meters
-- 🎓 **Facilities:** Educational buildings, modern labs & workshops, library, admin buildings, student facilities
-- 🎯 **Mission:** Combining practical hands-on training with theoretical knowledge for real-world tech careers
+### Quick Info About BATU 🏛️
+
+Our university started in 2022 (yeah, it's pretty new!). It's one of those technological universities that focus more on practical stuff rather than just theory. We're in Borg El Arab, Alexandria - the campus is huge (42,000 square meters!) with modern labs, workshops, and everything we need.
+
+The whole idea is to get us ready for actual jobs in tech, not just memorize textbooks. That's why we get to do projects like this one!
 
 ---
 
@@ -44,47 +44,47 @@ Hey there! This is our web programming course project - a complete timetable man
 
 ---
 
-## ✨ What We Built
+## What We Built ✨
 
-### Main Features
-- 📱 **Works on Your Phone** - Designed mobile-first, works great on any screen size
-- 🔍 **Easy Search** - Find any course, instructor, or room quickly
-- 📅 **Filter by Day** - Just wanna see Monday classes? We got you!
-- 🎯 **Year 3/4 Tabs** - Easy switching between Software and Network tracks
-- 💾 **Remembers Your Choice** - Uses localStorage to save what you last viewed
-- 📖 **Course Details** - Click any course to see more info in a popup
+### The Main Stuff
+- 📱 **Mobile-Friendly** - Works on your phone (because let's be honest, nobody checks schedules on laptops anymore)
+- 🔍 **Search Bar** - Type anything - course name, instructor, room number - and it finds it
+- 📅 **Day Filters** - Only want to see Saturday classes? Done.
+- 🎯 **Track Tabs** - For Year 3 & 4 - easy switch between Software and Network Engineering
+- 💾 **Remembers You** - Saves your last view so you don't have to select everything again
+- 📖 **Course Info** - Click any class to see full details, instructor, room, everything
+- ⏰ **12-Hour Format** - Times show as 9:00 AM instead of military time (we're not in the army!)
 
-### Pages We Made
-- **Home Page** - Overview of all years with quick stats
-- **Year 1 & 2** - Basic timetables with search and filters
-- **Year 3 & 4** - Split into Software and Network Engineering tracks
+### What's Inside
+- **Homepage** - Overview of all years and a schedule builder
+- **Year 1 & 2 Pages** - All groups and classes with filters
+- **Year 3 & 4 Pages** - Separated by major (Software or Network)
+- **Each schedule is organized by day** - Saturday, Sunday/Monday, Tuesday/Wednesday
 
-### JavaScript Interactivity
-- 🔍 **Smart Filtering** - Filter timetables by day with dropdown menus
-- 🔎 **Real-time Search** - Instant search across subjects, instructors, and rooms
-- 🔄 **Tab Navigation** - Toggle between SW and NETWORK majors (Year 3/4)
-- 💾 **Data Persistence** - User preferences saved in localStorage
-- 📱 **Mobile Menu** - Collapsible navigation for small screens
-- 🎯 **Smooth Animations** - Scroll-triggered animations for engaging UX
-- ⚡ **Debounced Search** - Optimized performance for search operations
+### Cool JavaScript Tricks We Added
+- Real-time search (no refresh needed!)
+- Filter dropdown that actually works
+- Tab switching for majors
+- Smooth scroll animations (looks fancy, right?)
+- Mobile menu that collapses
+- Performance optimization so it doesn't lag
+## Tech Stack 🛠️
 
-## 🛠️ What We Used
+### What We Used
+- **HTML5** - The basic structure
+- **CSS3** - Made it look nice (check our custom styles in `css/main.css`)
+- **Bootstrap 5** - Saved us SO much time on making it responsive
+- **Font Awesome** - All those cool icons
+- **JavaScript (Vanilla)** - No frameworks! Just pure JS for all the filters, search, and interactive stuff
 
-### Technologies
-- **HTML5** - For the page structure
-- **CSS3** - Custom styling (check out `css/main.css`)
-- **Bootstrap 5** - Makes it responsive and look good
-- **Font Awesome** - For the icons
-- **JavaScript** - All the interactive stuff (filters, search, etc.)
+### Tools We Worked With
+- **VS Code** - Best editor, fight me
+- **GitHub** - Where all our code lives (and where we learned about merge conflicts the hard way)
+- **Git** - For version control (took us a while to get used to it tbh)
+- **Chrome DevTools** - Spent half our time here debugging 😅
 
-### Tools
-- **VS Code** - Our code editor
-- **GitHub** - For hosting and version control
-- **Bootstrap & Font Awesome** - Already included in the project!
-
-### Inspiration
-We checked out some other university timetable sites and added our own style to it!el.app/index.html](https://it-batu.vercel.app/index.html)
-- Custom BATU University theme colors
+### Shoutout
+We took some inspiration from other university timetable websites but added our own twist to make it unique for BATU!
 - Professional academic dashboard aesthetic
 
 ---
@@ -123,31 +123,33 @@ BATU timeable/
 ---
 
 ## 🚀 Getting Started
+## How to Run This Thing 🚀
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Text editor (VS Code recommended)
-- Git (for version control)
-- Basic knowledge of HTML, CSS, JavaScript
+### What You Need
+- Any modern browser (Chrome, Firefox, whatever you use)
+- That's literally it for just viewing
+- If you want to edit: VS Code or any text editor
 
-### Installation
+### Running It Locally
 
-1. **Clone the repository:**
+**Super Easy Way:**
+1. Download/clone this repo
+2. Open `index.html` in your browser
+3. Done!
+
+**Fancy Way (for developers):**
+1. Clone it:
    ```bash
-   git clone https://github.com/yourusername/batu-timetable.git
-   cd batu-timetable
+   git clone https://github.com/KHALILL2/BATU-Timetable.git
+   cd BATU-Timetable
    ```
 
-2. **Open the project:**
-   - Navigate to the project folder
-   - Open `index.html` in your browser
-   - Or use VS Code Live Server extension
-
-3. **Local Development:**
-   - Install VS Code Live Server extension
+2. If you have VS Code:
+   - Install "Live Server" extension
    - Right-click `index.html` → "Open with Live Server"
-   - View at `http://localhost:5500`
+   - It opens at `http://localhost:5500`
 
+3. Edit whatever you want in the code!
 ---
 
 ## 🌐 Deployment to GitHub Pages
@@ -327,19 +329,17 @@ Edit footer in all HTML files:
 - ✅ Validate HTML/CSS (W3C Validator)
 
 ---
+## The Team 👥
 
-## 👥 Project Team
+Just two IT students trying to make life easier for everyone (and get a good grade lol):
 
-## 👥 Our Team
+- **Khalil Muhammad** - 2nd Year IT Student @ BATU
+- **Mohammed Ali** - 2nd Year IT Student @ BATU
 
-**Web Programming Course Project**
-
-- **Developer 1:** Khalil Muhammad
-- **Developer 2:** Mohammed Ali
-- **Year:** 2nd Year IT Students
-- **University:** Bahir Dar University (BATU)
-- **Department:** Information Technology
-- **Course:** Web Programming
+**Team Name:** NEXUS (sounds cool, right?)  
+**Department:** Information Technology  
+**University:** Borg El Arab Technological University, Alexandria, Egypt  
+**Made in:** December 2025ming
 - **Date:** December 2025
 
 ## 📝 Code Quality
@@ -385,39 +385,37 @@ This project is created for educational purposes as part of the Front-End Web De
 
 ---
 ## 🤝 Want to Contribute?
+## Want to Help? 🤝
 
-This is our course project, but if you're a BATU IT student and want to add something:
+This is our course project, but if you're a BATU student and see something that could be better:
 
-1. Fork our repo
+1. Fork the repo
 2. Make your changes
 3. Send us a pull request
-4. We'll check it out!
+4. We'll review it!
 
-Found a bug? Let us know!t push origin feature/improvement`)
-5. Open a Pull Request
+**Found a bug?** Open an issue on GitHub or just DM us!
 
-## 📞 Contact Us
+## Contact 📞
 
-Questions about the project? Reach out!
+Got questions? Want to roast our code? Hit us up:
 
-- **Khalil Muhammad** - BATU IT Student
-- **Mohammed Ali** - BATU IT Student
-- **GitHub:** [Will add repo link]
+- **GitHub Repo:** [BATU-Timetable](https://github.com/KHALILL2/BATU-Timetable)
+- **Khalil Muhammad** - Find me in the IT labs usually
+- **Mohammed Ali** - Same, probably debugging something
 
-This project is part of our Web Programming course at BATU.
-- **Location:** Bahir Dar, Ethiopia
-- **GitHub Issues:** [Project Issues Page]
-
+We're 2nd year students, so be nice 😅
 ## 🎓 Thanks To
+## Big Thanks To 🙏
 
-- **Our Web Programming Instructor** - For teaching us this stuff!
-- **BATU IT Department** - Our home for the past 2 years
-- **Bootstrap & Font Awesome** - Made our lives easier
-- **Our Classmates** - For testing and feedback
-- **Stack Overflow** - You know why 😄
-- **Font Awesome** - For comprehensive icon library
-- **Design Inspiration** - [it-batu.vercel.app](https://it-batu.vercel.app)
-
+- **Our Web Programming Instructor** - For teaching us all this and being patient with our questions
+- **BATU IT Department** - For the labs, wifi, and letting us stay late to finish this
+- **Our Classmates** - For testing the site and telling us when stuff broke
+- **Bootstrap Team** - Seriously saved us so much time
+- **Font Awesome** - For all the icons
+- **Stack Overflow** - You KNOW why 😂
+- **YouTube** - For those "how to fix..." tutorials at 2 AM
+- **Coffee** - The real MVP
 ---
 
 ## 📚 Additional Resources
@@ -450,10 +448,17 @@ This project is part of our Web Programming course at BATU.
 ---
 
 **Made with ❤️ and lots of ☕ by Khalil & Mohammed**
+---
 
-*BATU IT Department - 2nd Year Students*  
+**Made with ❤️ and lots of ☕ by Team NEXUS**
+
+*Khalil Muhammad & Mohammed Ali*  
+*2nd Year IT Students - BATU*  
 *December 2025*
 
-P.S. - If you find any bugs, we probably know about them already 😅nts**
+P.S. - If you find bugs, we probably already know about them but submit an issue anyway 😅  
+P.P.S. - This is our first big web project, so feedback is appreciated!
 
-*Last Updated: December 3, 2025*
+---
+
+*Last Updated: December 5, 2025*
