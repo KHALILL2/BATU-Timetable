@@ -673,25 +673,25 @@ function createTimetableRowByDay(course, index) {
     if (course.group !== undefined && course.group !== null && course.group !== '') {
         // Year 1-2: Show Group column
         tr.innerHTML = `
+            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
+            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
             <td class="time-cell" data-label="Time:">${course.time}</td>
             <td class="group-cell" data-label="Group:">Group ${course.group}</td>
             <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
             <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td class="room-cell" data-label="Room:">${course.room}</td>
             <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
+            <td class="room-cell" data-label="Place:">${course.room}</td>
         `;
     } else {
         // Year 3-4: No Group column
         tr.innerHTML = `
+            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
+            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
             <td class="time-cell" data-label="Time:">${course.time}</td>
             <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
             <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td class="room-cell" data-label="Room:">${course.room}</td>
             <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
+            <td class="room-cell" data-label="Place:">${course.room}</td>
         `;
     }
     
