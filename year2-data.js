@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Year 2 Timetable Data - Fall 2025/2026
  * BATU IT Department
  * 4 Groups, each with 4 Classes (A/B divisions)
@@ -8,6 +8,7 @@
 const year2Group1Data = [
     // SATURDAY
     { day: 'Saturday', time: '9:00-9:40', class: 'All', subject: 'Operating System', room: 'Lecture Hall A318', instructor: 'Dr. Muhammad Al-Sadiq', type: 'Lecture', group: '1', classDiv: 'All' },
+
     { day: 'Saturday', time: '11:40-1:00', class: 'All', subject: 'Digital Engineering', room: 'Lecture Hall A118', instructor: 'Dr. Osama El-Nahas / Dr. Rawda Magdy', type: 'Lecture', group: '1', classDiv: 'All' },
     { day: 'Saturday', time: '1:00-2:20', class: '1', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     { day: 'Saturday', time: '1:00-2:20', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
