@@ -239,15 +239,30 @@ function resetFilters(year) {
     }
     
     // Show all rows
-    const table = document.getElementById(`timetableBody${yearNum}`);
-    if (table) {
-        table.querySelectorAll('tr').forEach(row => {
-            row.style.display = '';
+    const days = {
+        'year1': ['Saturday', 'Sunday', 'Wednesday'],
+        'year2': ['Saturday', 'Monday', 'Tuesday'],
+        'year3': ['Saturday', 'Monday', 'Tuesday'],
+        'year4': ['Saturday', 'Sunday', 'Wednesday']
+    };
+    
+    const yearDays = days[year] || [];
+    const tracks = (year === 'year3' || year === 'year4') ? ['SW', 'NET'] : [''];
+    
+    tracks.forEach(track => {
+        yearDays.forEach(day => {
+            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
+            const table = document.getElementById(tableId);
+            if (table) {
+                table.querySelectorAll('tr').forEach(row => {
+                    row.style.display = '';
+                });
+            }
         });
-    }
+    });
     
     // Update result count
-    updateResultCount(year);
+    updateResultCount(year, yearDays, tracks);
     
     // Clear saved preferences
     const prefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES) || '{}');
@@ -303,55 +318,75 @@ function applyFilters(year) {
     const groupFilter = document.getElementById(`groupFilter${yearNum}`);
     const classFilter = document.getElementById(`classFilter${yearNum}`);
     
-    if (!groupFilter || !classFilter) return;
+    // For Year 3-4, only classFilter exists
+    if (!classFilter) return;
     
-    const selectedGroup = groupFilter.value;
+    const selectedGroup = groupFilter ? groupFilter.value : 'all';
     const selectedClass = classFilter.value;
     
     // Apply filters to all day tables for this year
     const days = {
         'year1': ['Saturday', 'Sunday', 'Wednesday'],
         'year2': ['Saturday', 'Monday', 'Tuesday'],
-        'year3SW': ['Saturday', 'Monday', 'Tuesday'],
-        'year3NET': ['Saturday', 'Monday', 'Tuesday'],
-        'year4SW': ['Saturday', 'Sunday', 'Wednesday'],
-        'year4NET': ['Saturday', 'Sunday', 'Wednesday']
+        'year3': ['Saturday', 'Monday', 'Tuesday'],
+        'year4': ['Saturday', 'Sunday', 'Wednesday']
     };
     
     const yearDays = days[year] || [];
     
-    yearDays.forEach(day => {
-        const table = document.getElementById(`timetableBody${yearNum}${day}`);
-        if (!table) return;
-        
-        table.querySelectorAll('tr').forEach(row => {
-            const rowGroup = row.getAttribute('data-group');
-            const rowClass = row.getAttribute('data-class');
+    // For Year 3-4, we need to apply to both SW and NET tracks
+    const tracks = (year === 'year3' || year === 'year4') ? ['SW', 'NET'] : [''];
+    
+    tracks.forEach(track => {
+        yearDays.forEach(day => {
+            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
+            const table = document.getElementById(tableId);
+            if (!table) return;
             
-            const groupMatch = selectedGroup === 'all' || rowGroup === selectedGroup;
-            const classMatch = selectedClass === 'all' || rowClass === selectedClass || rowClass === 'All';
-            
-            if (groupMatch && classMatch) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            let visibleCount = 0;
+            table.querySelectorAll('tr').forEach(row => {
+                const rowGroup = row.getAttribute('data-group');
+                const rowClass = row.getAttribute('data-class');
+                
+                const groupMatch = selectedGroup === 'all' || rowGroup === selectedGroup;
+                const classMatch = selectedClass === 'all' || rowClass === selectedClass || rowClass === 'All';
+                
+                if (groupMatch && classMatch) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         });
     });
+    
+    updateResultCount(year, yearDays, tracks);
 }
 
 /**
  * Update result count display
  */
-function updateResultCount(year) {
+function updateResultCount(year, yearDays, tracks) {
     const yearNum = year.replace('year', '');
-    const table = document.getElementById(`timetableBody${yearNum}`);
     const countElement = document.getElementById(`resultCount${yearNum}`);
     
-    if (!table || !countElement) return;
+    if (!countElement) return;
     
-    const visibleRows = Array.from(table.querySelectorAll('tr')).filter(row => row.style.display !== 'none');
-    countElement.textContent = `Showing ${visibleRows.length} classes`;
+    let totalVisible = 0;
+    
+    tracks.forEach(track => {
+        yearDays.forEach(day => {
+            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
+            const table = document.getElementById(tableId);
+            if (!table) return;
+            
+            const visibleRows = Array.from(table.querySelectorAll('tr')).filter(row => row.style.display !== 'none');
+            totalVisible += visibleRows.length;
+        });
+    });
+    
+    countElement.textContent = `Showing ${totalVisible} classes`;
 }
 
 // ========================================
