@@ -29,10 +29,12 @@ body {
     line-height: 1.6;
     color: var(--dark-color);
     background-color: #f5f7fa;
+    overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* ===== Navigation Bar ===== */
@@ -620,20 +622,20 @@ html {
 
 /* ===== Scrollbar Styling ===== */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0px;
+    display: none;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--light-color);
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 5px;
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0a58ca;
+    display: none;
 }
 
 /* ===== Loading Animation ===== */
@@ -728,4 +730,12 @@ html {
         padding: 0.75rem 0.5rem;
         font-size: 0.85rem;
     }
+}
+
+/* ===== Schedule Builder Hidden Elements ===== */
+#trackSelectContainer,
+#groupSelectContainer,
+#classSelectContainer,
+#scheduleResult {
+    display: none;
 }
