@@ -30,10 +30,10 @@ const year4SoftwareData = [
     { day: 'Wednesday', time: '9:00 AM-10:20 AM', class: 'All', subject: 'Signal Processing', room: 'Lecture Hall 301', instructor: 'Dr. Basant Talba', type: 'Lecture', classDiv: 'All' },
     { day: 'Wednesday', time: '10:20 AM-11:40 AM', class: 'All', subject: 'CCNA R&S II', room: 'Lecture Hall 301', instructor: 'Dr. Eman Shawky', type: 'Lecture', classDiv: 'All' },
     { day: 'Wednesday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Signal section', room: 'TBD', instructor: 'TBD', type: 'Section', classDiv: 'All' },
-    { day: 'Wednesday', time: '11:40 AM-12:20 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'TBD', type: 'Lab', classDiv: 'All' },
+    { day: 'Wednesday', time: '11:40 AM-12:20 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', classDiv: 'All' },
     { day: 'Wednesday', time: '1:00 PM-2:20 PM', class: '3', subject: 'CCNA 2 section', room: 'Room 202', instructor: 'TBD', type: 'Section', classDiv: 'All' },
-    { day: 'Wednesday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'TBD', type: 'Lab', classDiv: 'All' },
-    { day: 'Wednesday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'TBD', type: 'Lab', classDiv: 'All' }
+    { day: 'Wednesday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', classDiv: 'All' },
+    { day: 'Wednesday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'Mobile II Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', classDiv: 'All' }
 ];
 
 // ========================================
