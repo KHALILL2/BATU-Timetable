@@ -40,10 +40,10 @@ const year2Group1Data = [
 // Year 2 - Group 2 Timetable
 const year2Group2Data = [
     // SATURDAY - Group 2
-    { day: 'Saturday', time: '09:00-10:20', class: '1', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '09:00-10:20', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '11:40-1:00', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A301', instructor: 'Dr.Mohamed Abd Al-Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '1:00-1:40', class: 'All', subject: 'Operating System', room: 'Lecture Hall A301', instructor: 'Dr.Muhammad Al-Sadiq', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '09:00 AM-10:20 AM', class: '1', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '09:00 AM-10:20 AM', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A301', instructor: 'Dr.Mohamed Abd Al-Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '1:00 PM-1:40 PM', class: 'All', subject: 'Operating System', room: 'Lecture Hall A301', instructor: 'Dr.Muhammad Al-Sadiq', type: 'Lecture', group: '2', classDiv: 'All' },
     // MONDAY - Group 2
     { day: 'Monday', time: '09:00 AM-10:20 AM', class: 'All', subject: 'Digital Engineering', room: 'Lecture Hall A301', instructor: 'Dr. Osama El-Nahas / Dr. Basant Talba', type: 'Lecture', group: '2', classDiv: 'All' },
     { day: 'Monday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'Introduction to DB', room: 'Lecture Hall A118', instructor: 'Dr. Nihal El-Azly', type: 'Lecture', group: '2', classDiv: 'All' },
