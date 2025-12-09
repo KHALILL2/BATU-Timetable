@@ -14,18 +14,18 @@ const year2Group1Data = [
     { day: 'Saturday', time: '1:00 PM-2:20 PM', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     { day: 'Saturday', time: '2:20 PM-3:40 PM', class: '3', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     // MONDAY
-    { day: 'Monday', time: '11:40 AM-12:20 PM', class: '1', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr.Lamia', type: 'Section', group: '1', classDiv: 'A' },
-    { day: 'Monday', time: '11:40 AM-12:20 PM', class: '1', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr.Mohammed Saeed', type: 'Section', group: '1', classDiv: 'B' },
-    { day: 'Monday', time: '12:20PM-1:00 PM', class: '2', subject: 'Linux Section', room: 'Hall 204', instructor: 'Dr.Lamia', type: 'Section', group: '1', classDiv: 'B' },
+    { day: 'Monday', time: '11:40 AM-12:20 PM', class: '1', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr. Lamia', type: 'Section', group: '1', classDiv: 'A' },
+    { day: 'Monday', time: '11:40 AM-12:20 PM', class: '1', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '1', classDiv: 'B' },
+    { day: 'Monday', time: '12:20 PM-1:00 PM', class: '2', subject: 'Linux Section', room: 'Hall 204', instructor: 'Dr. Lamia', type: 'Section', group: '1', classDiv: 'B' },
     { day: 'Monday', time: '12:20 PM-1:00 PM', class: '2', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '1', classDiv: 'A' },
     { day: 'Monday', time: '10:20 AM-11:00 AM', class: '3', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '1', classDiv: 'A' },
-    { day: 'Monday', time: '10:20 AM-11:00 AM', class: '3', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. lamia', type: 'Section', group: '1', classDiv: 'A' },
-    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. rana', type: 'Section', group: '1', classDiv: 'A' },
-    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr.Lamia', type: 'Section', group: '1', classDiv: 'B' },
+    { day: 'Monday', time: '10:20 AM-11:00 AM', class: '3', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Lamia', type: 'Section', group: '1', classDiv: 'A' },
+    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Rana', type: 'Section', group: '1', classDiv: 'A' },
+    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Lamia', type: 'Section', group: '1', classDiv: 'B' },
     { day: 'Monday', time: '10:20 AM-11:40 AM', class: '2', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr. Rania', type: 'Section', group: '1', classDiv: 'A' },
     { day: 'Monday', time: '10:20 AM-11:40 AM', class: '2', subject: 'DE Section', room: 'Hall 207', instructor: 'Dr. Ahmed Kamel', type: 'Section', group: '1', classDiv: 'B' },
     { day: 'Monday', time: '11:40 AM-1:00 PM', class: '3', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr. Rania', type: 'Section', group: '1', classDiv: 'All' },
-    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr.Bilal', type: 'Section', group: '1', classDiv: 'all' },
+    { day: 'Monday', time: '11:00 AM-11:40 AM', class: '4', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Bilal', type: 'Section', group: '1', classDiv: 'all' },
     { day: 'Monday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A118', instructor: 'Dr. Nihal El-Azly', type: 'Lecture', group: '1', classDiv: 'All' },
     { day: 'Monday', time: '2:20 PM-3:40 PM', class: 'All', subject: 'Introduction to DB', room: 'Lecture Hall A118', instructor: 'Dr. Nihal El-Azly', type: 'Lecture', group: '1', classDiv: 'All' },
     // TUESDAY
@@ -42,43 +42,43 @@ const year2Group2Data = [
     // SATURDAY - Group 2
     { day: 'Saturday', time: '09:00 AM-10:20 AM', class: '1', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
     { day: 'Saturday', time: '09:00 AM-10:20 AM', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A301', instructor: 'Dr.Mohamed Abd Al-Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '1:00 PM-1:40 PM', class: 'All', subject: 'Operating System', room: 'Lecture Hall A301', instructor: 'Dr.Muhammad Al-Sadiq', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A301', instructor: 'Dr. Mohamed Abd Al-Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '1:00 PM-1:40 PM', class: 'All', subject: 'Operating System', room: 'Lecture Hall A301', instructor: 'Dr. Muhammad Al-Sadiq', type: 'Lecture', group: '2', classDiv: 'All' },
     // MONDAY - Group 2
     { day: 'Monday', time: '09:00 AM-10:20 AM', class: 'All', subject: 'Digital Engineering', room: 'Lecture Hall A301', instructor: 'Dr. Osama El-Nahas / Dr. Basant Talba', type: 'Lecture', group: '2', classDiv: 'All' },
     { day: 'Monday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'Introduction to DB', room: 'Lecture Hall A118', instructor: 'Dr. Nihal El-Azly', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Monday', time: '2:20 PM-3:00 PM', class: '1', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr.Mohammed Saeed ', type: 'Section', group: '2', classDiv: 'A' },
-    { day: 'Monday', time: '2:20 PM-3:00 PM', class: '1', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr.Lamia ', type: 'Section', group: '2', classDiv: 'B' },
-    { day: 'Monday', time: '3:00 PM-3:40 PM', class: '2', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr.Mohammed Saeed ', type: 'Section', group: '2', classDiv: 'A' },
-    { day: 'Monday', time: '3:00 PM-3:40 PM', class: '2', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr.Lamia ', type: 'Section', group: '2', classDiv: 'B' },
+    { day: 'Monday', time: '2:20 PM-3:00 PM', class: '1', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '2', classDiv: 'A' },
+    { day: 'Monday', time: '2:20 PM-3:00 PM', class: '1', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Lamia', type: 'Section', group: '2', classDiv: 'B' },
+    { day: 'Monday', time: '3:00 PM-3:40 PM', class: '2', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '2', classDiv: 'A' },
+    { day: 'Monday', time: '3:00 PM-3:40 PM', class: '2', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Lamia', type: 'Section', group: '2', classDiv: 'B' },
     { day: 'Monday', time: '1:00 PM-1:40 PM', class: '1', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Ahmed Kamel', type: 'Section', group: '2', classDiv: 'All' },
     { day: 'Monday', time: '1:00 PM-1:40 PM', class: '2', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr. Israa Mohsen', type: 'Section', group: '2', classDiv: 'All' },
-    { day: 'Monday', time: '1:00 PM-1:40 PM', class: '3', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr.Rana Ahmed ', type: 'Section', group: '2', classDiv: 'All' },
-    { day: 'Monday', time: '1:40 PM-2:20 PM', class: '4', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr.Rana Ahmed ', type: 'Section', group: '2', classDiv: 'All' },
+    { day: 'Monday', time: '1:00 PM-1:40 PM', class: '3', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr. Rana Ahmed', type: 'Section', group: '2', classDiv: 'All' },
+    { day: 'Monday', time: '1:40 PM-2:20 PM', class: '4', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr. Rana Ahmed', type: 'Section', group: '2', classDiv: 'All' },
     // TUESDAY - Group 2
     { day: 'Tuesday', time: '09:00 AM-10:20 AM', class: 'All', subject: 'Web Programming I', room: 'Lecture Hall A101', instructor: 'Dr. Ashraf', type: 'Lecture', group: '2', classDiv: 'All' },
     { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: 'All', subject: 'Linux Essentials', room: 'Lecture Hall A118', instructor: 'Dr. Eman Shawky', type: 'Lecture', group: '2', classDiv: 'All' },
     { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '3', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
     { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '4', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
     { day: 'Tuesday', time: '1:00 PM-2:20 PM', class: '3', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Ahmed Kamel', type: 'Section', group: '2', classDiv: 'All' },
-    { day: 'Tuesday', time: '1:00 PM-2:20 PM', class: '4', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr.Bilal ', type: 'Section', group: '2', classDiv: 'All' }
+    { day: 'Tuesday', time: '1:00 PM-2:20 PM', class: '4', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr. Bilal', type: 'Section', group: '2', classDiv: 'All' }
 ];
 
 // Year 2 - Group 3 Timetable
 const year2Group3Data = [
     // SATURDAY - Group 3
-    { day: 'Saturday', time: '09:40 AM-10:20 AM', class: 'All', subject: 'Operating System', room: 'Lecture Hall A318', instructor: 'Dr.Muhammad Al-Sadiq', type: 'Lecture', group: '3', classDiv: 'All' },
-    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: '1', subject: 'DE Section', room: 'Hall 216', instructor: 'Dr.Bilal ', type: 'Section', group: '3', classDiv: 'All' },
+    { day: 'Saturday', time: '09:40 AM-10:20 AM', class: 'All', subject: 'Operating System', room: 'Lecture Hall A318', instructor: 'Dr. Muhammad Al-Sadiq', type: 'Lecture', group: '3', classDiv: 'All' },
+    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: '1', subject: 'DE Section', room: 'Hall 216', instructor: 'Dr. Bilal', type: 'Section', group: '3', classDiv: 'All' },
     { day: 'Saturday', time: '10:20 AM-11:40 AM', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '3', classDiv: 'All' },
-    { day: 'Saturday', time: '11:00 AM-11:40 AM', class: '3', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr.Mariam', type: 'Section', group: '3', classDiv: 'All' },
+    { day: 'Saturday', time: '11:00 AM-11:40 AM', class: '3', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr. Mariam', type: 'Section', group: '3', classDiv: 'All' },
     { day: 'Saturday', time: '10:20 AM-11:40 AM', class: '1', subject: 'Web + C++ Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '3', classDiv: 'All' },
     { day: 'Saturday', time: '1:00 PM-1:40 PM', class: '1', subject: 'Linux Section', room: 'Hall 216', instructor: 'Dr. Mariam', type: 'Section', group: '3', classDiv: 'All' },
-    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: '2', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr.Asmaa ', type: 'Section', group: '3', classDiv: 'All' },
+    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: '2', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr. Asmaa', type: 'Section', group: '3', classDiv: 'All' },
     { day: 'Saturday', time: '11:40 AM-12:20 PM', class: '4', subject: 'Linux Section', room: 'Hall 205', instructor: 'Dr. Mariam', type: 'Section', group: '3', classDiv: 'All' },
     { day: 'Saturday', time: '1:40 PM-2:20 PM', class: '2', subject: 'Linux Section', room: 'Hall 216', instructor: 'Dr. Mariam', type: 'Section', group: '3', classDiv: 'All' },
-    { day: 'Saturday', time: '10:20 AM-11:40 AM', class: '4', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr.Asmaa ', type: 'Section', group: '3', classDiv: 'All' },
+    { day: 'Saturday', time: '10:20 AM-11:40 AM', class: '4', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr. Asmaa', type: 'Section', group: '3', classDiv: 'All' },
     // MONDAY - Group 3
-    { day: 'Monday', time: '10:20 AM-11:40 AM', class: '3', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Israa Mohsen ', type: 'Section', group: '3', classDiv: 'All' },
+    { day: 'Monday', time: '10:20 AM-11:40 AM', class: '3', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Israa Mohsen', type: 'Section', group: '3', classDiv: 'All' },
     { day: 'Monday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Digital Engineering', room: 'Lecture Hall A301', instructor: 'Dr. Osama El-Nahas / Dr. Basant Talba', type: 'Lecture', group: '3', classDiv: 'All' },
     // TUESDAY - Group 3
     { day: 'Tuesday', time: '09:00 AM-10:20 AM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A301', instructor: 'Dr. Nihal El-Azly', type: 'Lecture', group: '3', classDiv: 'All' },
@@ -103,18 +103,18 @@ const year2Group4Data = [
     // TUESDAY - Group 4
     { day: 'Tuesday', time: '09:00 AM-10:20 AM', class: 'All', subject: 'Programming Essentials in C++', room: 'Lecture Hall A118', instructor: 'Dr. Mohamed Abd Al-Fattah', type: 'Lecture', group: '4', classDiv: 'All' },
     { day: 'Tuesday', time: '10:20 AM-11:00 AM', class: 'All', subject: 'Linux Essentials', room: 'Lecture Hall A118', instructor: 'Dr. Eman Shawky', type: 'Lecture', group: '4', classDiv: 'All' },
-    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '1', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr.Mohammed Saeed ', type: 'Section', group: '4', classDiv: 'A' },
+    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '1', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '4', classDiv: 'A' },
     { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '1', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Hazem', type: 'Section', group: '4', classDiv: 'B' },
-    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '2', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr.Mariam ', type: 'Section', group: '4', classDiv: 'A' },
-    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '2', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr.Rana ', type: 'Section', group: '4', classDiv: 'B' },
-    { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '1', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr.Ahmed Kamel ', type: 'Section', group: '4', classDiv: 'All' },
-    { day: 'Tuesday', time: '1:40 PM-3:00 PM', class: '2', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr.Israa Mohsen ', type: 'Section', group: '4', classDiv: 'All' },
-    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr.Mohammed Saeed ', type: 'Section', group: '4', classDiv: 'A' },
-    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Hazem ', type: 'Section', group: '4', classDiv: 'B' },
-    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr.Mariam ', type: 'Section', group: '4', classDiv: 'A' },
-    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr.Rana ', type: 'Section', group: '4', classDiv: 'B' },
-    { day: 'Tuesday', time: '12:20 PM-1:40 PM', class: '3', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr.Israa Mohsen ', type: 'Section', group: '4', classDiv: 'All' },
-    { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '4', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr.Bilal ', type: 'Section', group: '4', classDiv: 'All' },
+    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '2', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr. Mariam', type: 'Section', group: '4', classDiv: 'A' },
+    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '2', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr. Rana', type: 'Section', group: '4', classDiv: 'B' },
+    { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '1', subject: 'DE Section', room: 'Hall 315', instructor: 'Dr. Ahmed Kamel', type: 'Section', group: '4', classDiv: 'All' },
+    { day: 'Tuesday', time: '1:40 PM-3:00 PM', class: '2', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr. Israa Mohsen', type: 'Section', group: '4', classDiv: 'All' },
+    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Linux Section', room: 'Hall 202', instructor: 'Dr. Mohammed Saeed', type: 'Section', group: '4', classDiv: 'A' },
+    { day: 'Tuesday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Linux Section', room: 'Hall 203', instructor: 'Dr. Hazem', type: 'Section', group: '4', classDiv: 'B' },
+    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 316', instructor: 'Dr. Mariam', type: 'Section', group: '4', classDiv: 'A' },
+    { day: 'Tuesday', time: '11:00 AM-11:40 AM', class: '4', subject: 'Linux Section', room: 'Hall 207', instructor: 'Dr. Rana', type: 'Section', group: '4', classDiv: 'B' },
+    { day: 'Tuesday', time: '12:20 PM-1:40 PM', class: '3', subject: 'DE Section', room: 'Hall 106', instructor: 'Dr. Israa Mohsen', type: 'Section', group: '4', classDiv: 'All' },
+    { day: 'Tuesday', time: '11:40 AM-1:00 PM', class: '4', subject: 'DE Section', room: 'Hall 304', instructor: 'Dr. Bilal', type: 'Section', group: '4', classDiv: 'All' },
     { day: 'Tuesday', time: '1:00 PM-2:20 PM', class: '2', subject: 'Web + C++ Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '4', classDiv: 'All' }
 ];
 
@@ -123,13 +123,13 @@ const year2TimetableData = [...year2Group1Data, ...year2Group2Data, ...year2Grou
 
 // Load timetable on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Year 2 data loaded:', year2TimetableData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 2 data loaded:', year2TimetableData.length, 'entries');
 
     // Wait a bit to ensure main.js is fully loaded
     setTimeout(() => {
         if (typeof loadTimetableByDays === 'function') {
             loadTimetableByDays('year2', year2TimetableData, ['Saturday', 'Monday', 'Tuesday']);
-            console.log('Year 2 timetables loaded with day separation');
+            if (typeof logger !== 'undefined') logger.log('Year 2 timetables loaded with day separation');
 
             // Update result count
             if (typeof updateResultCount === 'function') {

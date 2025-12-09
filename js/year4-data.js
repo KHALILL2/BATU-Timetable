@@ -78,16 +78,16 @@ const year4NetworkData = [
 
 // Load timetables on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Year 4 Software data loaded:', year4SoftwareData.length, 'entries');
-    console.log('Year 4 Network data loaded:', year4NetworkData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 4 Software data loaded:', year4SoftwareData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 4 Network data loaded:', year4NetworkData.length, 'entries');
     
     setTimeout(() => {
         if (typeof loadTimetableByDays === 'function') {
             loadTimetableByDays('year4SW', year4SoftwareData, ['Saturday', 'Sunday', 'Wednesday']);
             loadTimetableByDays('year4NET', year4NetworkData, ['Saturday', 'Sunday', 'Wednesday']);
-            console.log('Year 4 timetables loaded with day separation');
+            if (typeof logger !== 'undefined') logger.log('Year 4 timetables loaded with day separation');
         } else {
-            console.error('loadTimetableByDays function not found!');
+            if (typeof logger !== 'undefined') logger.error('loadTimetableByDays function not found!');
         }
     }, 100);
 });

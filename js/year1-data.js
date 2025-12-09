@@ -97,14 +97,14 @@ const year1TimetableData = [...year1Group1Data, ...year1Group2Data, ...year1Grou
 
 // Load timetable on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Year 1 data loaded:', year1TimetableData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 1 data loaded:', year1TimetableData.length, 'entries');
     
     // Wait a bit to ensure main.js is fully loaded
     setTimeout(() => {
         if (typeof loadTimetableByDays === 'function') {
             // Load data into day-separated tables (Year 1: Saturday, Sunday, Wednesday)
             loadTimetableByDays('year1', year1TimetableData, ['Saturday', 'Sunday', 'Wednesday']);
-            console.log('Year 1 timetables loaded with day separation');
+            if (typeof logger !== 'undefined') logger.log('Year 1 timetables loaded with day separation');
             
             // Check URL parameters and auto-filter
             const urlParams = new URLSearchParams(window.location.search);

@@ -76,16 +76,16 @@ const year3NetworkData = [
 
 // Load timetables on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Year 3 Software data loaded:', year3SoftwareData.length, 'entries');
-    console.log('Year 3 Network data loaded:', year3NetworkData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 3 Software data loaded:', year3SoftwareData.length, 'entries');
+    if (typeof logger !== 'undefined') logger.log('Year 3 Network data loaded:', year3NetworkData.length, 'entries');
     
     setTimeout(() => {
         if (typeof loadTimetableByDays === 'function') {
             loadTimetableByDays('year3SW', year3SoftwareData, ['Saturday', 'Monday', 'Tuesday']);
             loadTimetableByDays('year3NET', year3NetworkData, ['Saturday', 'Monday', 'Tuesday']);
-            console.log('Year 3 timetables loaded with day separation');
+            if (typeof logger !== 'undefined') logger.log('Year 3 timetables loaded with day separation');
         } else {
-            console.error('loadTimetableByDays function not found!');
+            if (typeof logger !== 'undefined') logger.error('loadTimetableByDays function not found!');
         }
     }, 100);
 });
