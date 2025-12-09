@@ -40,7 +40,25 @@ html {
 /* ===== Navigation Bar ===== */
 .navbar {
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+}
+
+.navbar.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.navbar.navbar-visible {
+    transform: translateY(0);
+}
+
+/* Add padding to body to compensate for fixed navbar */
+body {
+    padding-top: 56px; /* Approximate navbar height */
 }
 
 .navbar-brand {

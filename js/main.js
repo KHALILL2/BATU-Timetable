@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make scrolling smooth
     initSmoothScrolling();
     
+    // Initialize navbar scroll behavior
+    initNavbarScroll();
+    
     // Load user's saved preferences
     loadUserPreferences();
     
@@ -62,6 +65,55 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // SMOOTH SCROLLING (looks cool!)
 // ========================================
+
+/**
+ * Initialize navbar hide/show on scroll behavior
+ */
+function initNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
+    let lastScrollTop = 0;
+    let scrollThreshold = 5; // Minimum scroll distance to trigger
+    let isScrolling;
+    
+    window.addEventListener('scroll', function() {
+        // Clear timeout if it exists
+        clearTimeout(isScrolling);
+        
+        // Set a timeout to run after scrolling ends
+        isScrolling = setTimeout(function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Don't hide navbar at the very top of the page
+            if (scrollTop <= 100) {
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('navbar-visible');
+                return;
+            }
+            
+            // Check if scroll difference is significant enough
+            if (Math.abs(scrollTop - lastScrollTop) < scrollThreshold) {
+                return;
+            }
+            
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down - hide navbar
+                navbar.classList.add('navbar-hidden');
+                navbar.classList.remove('navbar-visible');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('navbar-visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        }, 10); // Small delay to debounce
+    }, { passive: true });
+    
+    // Ensure navbar is visible initially
+    navbar.classList.add('navbar-visible');
+}
 
 /**
  * Makes clicking on links scroll smoothly instead of jumping
