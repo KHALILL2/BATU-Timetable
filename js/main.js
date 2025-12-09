@@ -98,15 +98,13 @@ function initSmoothScrolling() {
 function loadUserPreferences() {
     // Load last viewed page
     const lastViewed = localStorage.getItem(STORAGE_KEYS.LAST_VIEWED);
-    if (lastViewed) {
-        console.log('Last viewed page:', lastViewed);
-    }
+    // Silent load for production
     
     // Load filter preferences
     const filterPrefs = localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES);
     if (filterPrefs) {
         const prefs = JSON.parse(filterPrefs);
-        console.log('Filter preferences loaded:', prefs);
+        // Preferences loaded successfully
     }
 }
 
@@ -476,14 +474,15 @@ function performGlobalSearch(searchText) {
  * @param {Object} course - Course data object from timetable
  */
 function showCourseDetails(course) {
-    // Get course details from database if available
-    const courseDetails = typeof getCourseDetails === 'function' ? getCourseDetails(course.subject) : null;
-    
-    // Update modal title
-    const modalTitle = document.getElementById('courseModalLabel');
-    if (modalTitle) {
-        modalTitle.innerHTML = `<i class="fas fa-book"></i> ${course.subject}`;
-    }
+    try {
+        // Get course details from database if available
+        const courseDetails = typeof getCourseDetails === 'function' ? getCourseDetails(course.subject) : null;
+        
+        // Update modal title
+        const modalTitle = document.getElementById('courseModalLabel');
+        if (modalTitle) {
+            modalTitle.innerHTML = `<i class="fas fa-book"></i> ${course.subject}`;
+        }
     
     // Populate class details (right side card)
     setTextContent('modalDay', course.day);
@@ -556,6 +555,12 @@ function showCourseDetails(course) {
     // Show the modal
     const modal = new bootstrap.Modal(document.getElementById('courseModal'));
     modal.show();
+    } catch (error) {
+        // Silently handle errors in production
+        if (CONFIG && CONFIG.DEBUG_MODE) {
+            console.error('Error showing course details:', error);
+        }
+    }
 }
 
 /**
@@ -660,29 +665,33 @@ function formatTime(time) {
  * @param {Array} days - Array of day names for this year
  */
 function loadTimetableByDays(year, data, days) {
-    const yearNum = year.replace('year', '');
-    
-    days.forEach(day => {
-        const tbody = document.getElementById(`timetableBody${yearNum}${day}`);
-        if (!tbody) {
-            console.error(`Timetable body not found for ${year} - ${day}`);
-            return;
-        }
+    try {
+        const yearNum = year.replace('year', '');
         
-        // Clear existing content
-        tbody.innerHTML = '';
-        
-        // Filter data for this day
-        const dayData = data.filter(course => course.day === day);
-        
-        // Create and append rows
-        dayData.forEach((course, index) => {
-            const row = createTimetableRowByDay(course, index);
-            tbody.appendChild(row);
+        days.forEach(day => {
+            const tbody = document.getElementById(`timetableBody${yearNum}${day}`);
+            if (!tbody) {
+                // Table not found - silent fail for GitHub Pages compatibility
+                return;
+            }
+            
+            // Clear existing content
+            tbody.innerHTML = '';
+            
+            // Filter data for this day
+            const dayData = data.filter(course => course.day === day);
+            
+            // Create and append rows
+            dayData.forEach((course, index) => {
+                const row = createTimetableRowByDay(course, index);
+                tbody.appendChild(row);
+            });
         });
-        
-        console.log(`${year} ${day}: ${dayData.length} entries loaded`);
-    });
+    } catch (error) {
+        if (CONFIG && CONFIG.DEBUG_MODE) {
+            console.error('Error loading timetable by days:', error);
+        }
+    }
 }
 
 /**
@@ -741,7 +750,7 @@ function createTimetableRowByDay(course, index) {
 function loadTimetable(year, data) {
     const tbody = document.getElementById(`timetableBody${year.replace('year', '')}`);
     if (!tbody) {
-        console.error(`Timetable body not found for ${year}`);
+        // Table not found - silent fail for GitHub Pages compatibility
         return;
     }
     

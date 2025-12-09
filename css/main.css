@@ -739,3 +739,67 @@ html {
 #scheduleResult {
     display: none;
 }
+
+/* ===== Deployment Test Page Styles ===== */
+.deployment-steps {
+    padding-left: 20px;
+    line-height: 2;
+}
+
+.deployment-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.deployment-footer-note {
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+/* ===== Accessibility Improvements ===== */
+.skip-to-main {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+}
+
+.skip-to-main:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Focus visible improvements */
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #f5c6cb;
+}
