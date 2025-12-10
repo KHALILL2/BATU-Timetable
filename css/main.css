@@ -821,3 +821,52 @@ body {
     margin: 20px 0;
     border: 1px solid #f5c6cb;
 }
+
+/* ===== Footer Link Enhancements ===== */
+.footer a {
+    color: #8ab4f8 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    color: #adc6ff !important;
+    text-decoration: none;
+    transform: translateX(3px);
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #8ab4f8;
+    transition: width 0.3s ease;
+}
+
+.footer a:hover::after {
+    width: 100%;
+}
+
+.footer a i {
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.footer a:hover i {
+    transform: scale(1.2);
+}
+
+/* Footer list items spacing */
+.footer ul.list-unstyled li {
+    margin-bottom: 8px;
+}
+
+.footer ul.list-unstyled li a {
+    padding: 4px 0;
+}
