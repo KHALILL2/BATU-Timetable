@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const groupSelect = document.getElementById('groupFilter2');
                 if (groupSelect) {
                     groupSelect.value = groupParam;
-                    if (typeof logger !== 'undefined') logger.log('Set group filter to:', groupParam);
                 }
             }
 
@@ -148,26 +147,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const classSelect = document.getElementById('classFilter2');
                 if (classSelect) {
                     classSelect.value = classParam;
-                    if (typeof logger !== 'undefined') logger.log('Set class filter to:', classParam);
                 }
             }
 
-            // Apply filters if any were set
+            // Apply the filters
             if (groupParam || classParam) {
                 if (typeof applyFilters === 'function') {
                     applyFilters('year2');
-                    if (typeof logger !== 'undefined') logger.log('Applied filters from URL parameters');
-                } else {
-                    console.warn('applyFilters function not available');
                 }
             } else {
-                // Update result count even when no filters applied
+                // Show count even without filters
                 if (typeof updateResultCount === 'function') {
                     updateResultCount('year2', ['Saturday', 'Monday', 'Tuesday'], ['']);
                 }
             }
-        } else {
-            console.error('loadTimetableByDays function not found!');
         }
     }, 100);
 });

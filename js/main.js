@@ -1,80 +1,53 @@
-/**
- * BATU IT Department Timetable Website
- * Main JavaScript File
+/*
+ * BATU Timetable - Main JavaScript
  * 
- * Made by: Khalil Muhammad & Mohammed Ali
- * Course: Web Programming
- * Year: 2nd Year IT - BATU
+ * Developed by: Khalil Muhammad & Mohammed Ali
+ * For: Web Programming Course, 2nd Year IT
  * 
- * This file handles all the cool interactive stuff:
- * - Searching through timetables
- * - Filtering by days
- * - Opening course detail popups
- * - Saving user preferences
- * - Smooth scrolling and animations
+ * This handles:
+ * - Day and class filtering
+ * - Search functionality
+ * - Course details modal
+ * - Smooth animations
  */
 
-// ========================================
-// GLOBAL STUFF
-// ========================================
-
-// Store all our timetable data here
+// Global data storage
 let allTimetableData = {};
 
-// Keys for saving stuff in browser storage
+// Browser storage keys
 const STORAGE_KEYS = {
     THEME: 'batu_theme_preference',
     LAST_VIEWED: 'batu_last_viewed_year',
     FILTER_PREFERENCES: 'batu_filter_preferences'
 };
 
-// ========================================
-// PAGE INITIALIZATION
-// ========================================
-
-/**
- * This runs when the page loads
- */
+// Initialize everything when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Make scrolling smooth
     initSmoothScrolling();
-    
-    // Initialize navbar scroll behavior
     initNavbarScroll();
-    
-    // Load user's saved preferences
     loadUserPreferences();
     
-    // Setup global search if we're on home page
+    // Home page search
     if (document.getElementById('globalSearch')) {
         initGlobalSearch();
     }
     
-    // Remember what page they're on
     saveLastViewedPage();
-    
-    // Handle tab switching for Year 3/4
-    activateTabFromHash();
-    
-    // Add scroll animations
+    activateTabFromHash(); // For Year 3/4 tabs
     initScrollAnimations();
     
-    console.log('Timetable website loaded! Built by Khalil & Mohammed');
+    if (typeof logger !== 'undefined') {
+        logger.log('Timetable loaded successfully!');
+    }
 });
 
-// ========================================
-// SMOOTH SCROLLING (looks cool!)
-// ========================================
-
-/**
- * Initialize navbar hide/show on scroll behavior
- */
+// Navbar - hide on scroll down, show on scroll up
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
     
     let lastScrollTop = 0;
-    let scrollThreshold = 5; // Minimum scroll distance to trigger
+    let scrollThreshold = 5;
     let isScrolling;
     
     window.addEventListener('scroll', function() {
@@ -215,72 +188,70 @@ document.addEventListener('shown.bs.tab', function(e) {
  * day = which day to show (or 'all' for everything)
  */
 function filterByDay(year, day) {
-    const tbody = document.getElementById(`timetableBody${year.replace('year', '')}`);
-    if (!tbody) return;
+    const yearNum = year.replace('year', '');
     
-    const rows = tbody.querySelectorAll('tr');
-    
-    rows.forEach(row => {
-        const dayCell = row.querySelector('.day-cell');
-        if (!dayCell) return;
+    // Update active tab state
+    const yearTabsContainer = document.getElementById(`dayTabs${yearNum}`);
+    if (yearTabsContainer) {
+        const allTabs = yearTabsContainer.querySelectorAll('.nav-link');
+        allTabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
         
-        if (day === 'all' || dayCell.textContent.trim() === day) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
+        // Set the clicked tab as active
+        const activeTab = day === 'all' 
+            ? document.getElementById(`all-days-tab-${yearNum}`)
+            : document.getElementById(`${day}-tab-${yearNum}`);
+        
+        if (activeTab) {
+            activeTab.classList.add('active');
         }
-    });
+    }
+    
+    // Show/hide day-schedule containers (works for all years now)
+    const daySchedules = document.querySelectorAll('.day-schedule');
+    
+    if (daySchedules.length > 0) {
+        // Show/hide day-schedule containers based on selection
+        daySchedules.forEach(schedule => {
+            const scheduleClasses = schedule.className.toLowerCase();
+            
+            if (day === 'all') {
+                schedule.style.display = '';
+            } else if (scheduleClasses.includes(day.toLowerCase())) {
+                schedule.style.display = '';
+            } else {
+                schedule.style.display = 'none';
+            }
+        });
+    }
     
     // Save preference
     saveFilterPreferences(year, { day: day });
 }
 
-/**
- * Search through the timetable
- * Looks in course names, instructors, and rooms
- */
+// Search timetable (checks course names, instructors, rooms)
 function searchTimetable(year, searchText) {
     const tbody = document.getElementById(`timetableBody${year.replace('year', '')}`);
     if (!tbody) return;
     
-    const rows = tbody.querySelectorAll('tr');
     const search = searchText.toLowerCase().trim();
     
-    rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        
-        if (search === '' || text.includes(search)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+    tbody.querySelectorAll('tr').forEach(row => {
+        const matches = search === '' || row.textContent.toLowerCase().includes(search);
+        row.style.display = matches ? '' : 'none';
     });
 }
 
-/**
-/**
- * Reset button - clears all filters
- */
+// Reset all filters to default
 function resetFilters(year) {
     const yearNum = year.replace('year', '');
     
-    // Reset day filter
-    const dayFilter = document.getElementById(`dayFilter${yearNum}`);
-    if (dayFilter) {
-        dayFilter.value = 'all';
-    }
-    
-    // Reset group filter
     const groupFilter = document.getElementById(`groupFilter${yearNum}`);
-    if (groupFilter) {
-        groupFilter.value = 'all';
-    }
-    
-    // Reset class filter
     const classFilter = document.getElementById(`classFilter${yearNum}`);
-    if (classFilter) {
-        classFilter.value = 'all';
-    }
+    
+    if (groupFilter) groupFilter.value = 'all';
+    if (classFilter) classFilter.value = 'all';
     
     // Reset search
     const searchInput = document.getElementById(`searchInput${yearNum}`);
@@ -320,56 +291,13 @@ function resetFilters(year) {
     localStorage.setItem(STORAGE_KEYS.FILTER_PREFERENCES, JSON.stringify(prefs));
 }
 
-/**
- * Filter by group
- */
-function filterByGroup(year, group) {
-    const yearNum = year.replace('year', '');
-    const table = document.getElementById(`timetableBody${yearNum}`);
-    if (!table) return;
-    
-    table.querySelectorAll('tr').forEach(row => {
-        const rowGroup = row.getAttribute('data-group');
-        if (group === 'all' || rowGroup === group) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-    
-    updateResultCount(year);
-}
-
-/**
- * Filter by class
- */
-function filterByClass(year, classNum) {
-    const yearNum = year.replace('year', '');
-    const table = document.getElementById(`timetableBody${yearNum}`);
-    if (!table) return;
-    
-    table.querySelectorAll('tr').forEach(row => {
-        const rowClass = row.getAttribute('data-class');
-        if (classNum === 'all' || rowClass === classNum || rowClass === 'All') {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-    
-    updateResultCount(year);
-}
-
-/**
- * Apply both group and class filters together (works with day-separated tables)
- */
+// Apply group and class filters
 function applyFilters(year) {
     const yearNum = year.replace('year', '');
     const groupFilter = document.getElementById(`groupFilter${yearNum}`);
     const classFilter = document.getElementById(`classFilter${yearNum}`);
     
-    // For Year 3-4, only classFilter exists
-    if (!classFilter) return;
+    if (!classFilter) return; // Year 3-4 might not have all filters
     
     const selectedGroup = groupFilter ? groupFilter.value : 'all';
     const selectedClass = classFilter.value;
@@ -873,41 +801,10 @@ function createTimetableRow(course, index) {
     return tr;
 }
 
-/**
- * Setup filter event listeners for a specific year
- * @param {string} year - Year identifier
- */
-function setupFilterListeners(year) {
-    const yearSuffix = year.replace('year', '');
-    
-    // Day filter
-    const dayFilter = document.getElementById(`dayFilter${yearSuffix}`);
-    if (dayFilter) {
-        dayFilter.addEventListener('change', function(e) {
-            filterByDay(year, e.target.value);
-        });
-    }
-    
-    // Search input
-    const searchInput = document.getElementById(`searchInput${yearSuffix}`);
-    if (searchInput) {
-        searchInput.addEventListener('input', debounce(function(e) {
-            searchTimetable(year, e.target.value);
-        }, 300));
-    }
-}
-
-// ========================================
-// MAKE FUNCTIONS WORK EVERYWHERE
-// ========================================
-
-// These let us use these functions from other files too
-window.loadTimetable = loadTimetable;
+// Make functions available globally (for HTML onclick handlers)
 window.loadTimetableByDays = loadTimetableByDays;
 window.showCourseDetails = showCourseDetails;
 window.filterByDay = filterByDay;
-window.filterByGroup = filterByGroup;
-window.filterByClass = filterByClass;
 window.applyFilters = applyFilters;
 window.searchTimetable = searchTimetable;
 window.resetFilters = resetFilters;
