@@ -20,31 +20,42 @@ document.addEventListener('DOMContentLoaded', function() {
             const year = this.value;
             
             // Reset other fields
-            trackSelect.value = '';
-            groupSelect.value = '';
-            classSelect.value = '';
-            scheduleResult.style.display = 'none';
+            if (trackSelect) trackSelect.value = '';
+            if (groupSelect) groupSelect.value = '';
+            if (classSelect) classSelect.value = '';
+            if (scheduleResult) scheduleResult.style.display = 'none';
             
             if (year === '3' || year === '4') {
                 // Show track selection for Year 3 & 4
-                trackSelectContainer.style.display = 'block';
-                trackSelect.required = true;
-                groupSelectContainer.style.display = 'none';
-                classSelectContainer.style.display = 'none';
+                if (trackSelectContainer) {
+                    trackSelectContainer.style.display = 'block';
+                    trackSelect.required = true;
+                }
+                if (groupSelectContainer) groupSelectContainer.style.display = 'none';
+                if (classSelectContainer) classSelectContainer.style.display = 'none';
+                if (groupSelect) groupSelect.required = false;
+                if (classSelect) classSelect.required = false;
             } else if (year === '1' || year === '2') {
                 // Show group and class selection for Year 1 & 2
-                trackSelectContainer.style.display = 'none';
-                trackSelect.required = false;
-                groupSelectContainer.style.display = 'block';
-                classSelectContainer.style.display = 'block';
+                if (trackSelectContainer) {
+                    trackSelectContainer.style.display = 'none';
+                    trackSelect.required = false;
+                }
+                if (groupSelectContainer) groupSelectContainer.style.display = 'block';
+                if (classSelectContainer) classSelectContainer.style.display = 'block';
+                if (groupSelect) groupSelect.required = true;
+                if (classSelect) classSelect.required = true;
                 
                 // Populate groups
                 populateGroups(year);
             } else {
                 // Hide all
-                trackSelectContainer.style.display = 'none';
-                groupSelectContainer.style.display = 'none';
-                classSelectContainer.style.display = 'none';
+                if (trackSelectContainer) trackSelectContainer.style.display = 'none';
+                if (groupSelectContainer) groupSelectContainer.style.display = 'none';
+                if (classSelectContainer) classSelectContainer.style.display = 'none';
+                if (trackSelect) trackSelect.required = false;
+                if (groupSelect) groupSelect.required = false;
+                if (classSelect) classSelect.required = false;
             }
         });
     }
