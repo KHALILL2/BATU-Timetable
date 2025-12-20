@@ -131,11 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
             loadTimetableByDays('year2', year2TimetableData, ['Saturday', 'Monday', 'Tuesday']);
             if (typeof logger !== 'undefined') logger.log('Year 2 timetables loaded with day separation');
 
-            // Update result count
-            if (typeof updateResultCount === 'function') {
-                updateResultCount('year2');
-            }
-
             // Check URL parameters and auto-filter
             const urlParams = new URLSearchParams(window.location.search);
             const groupParam = urlParams.get('group');
@@ -145,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const groupSelect = document.getElementById('groupFilter2');
                 if (groupSelect) {
                     groupSelect.value = groupParam;
+                    if (typeof logger !== 'undefined') logger.log('Set group filter to:', groupParam);
                 }
             }
 
@@ -152,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const classSelect = document.getElementById('classFilter2');
                 if (classSelect) {
                     classSelect.value = classParam;
+                    if (typeof logger !== 'undefined') logger.log('Set class filter to:', classParam);
                 }
             }
 
@@ -159,6 +156,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (groupParam || classParam) {
                 if (typeof applyFilters === 'function') {
                     applyFilters('year2');
+                    if (typeof logger !== 'undefined') logger.log('Applied filters from URL parameters');
+                } else {
+                    console.warn('applyFilters function not available');
+                }
+            } else {
+                // Update result count even when no filters applied
+                if (typeof updateResultCount === 'function') {
+                    updateResultCount('year2', ['Saturday', 'Monday', 'Tuesday'], ['']);
                 }
             }
         } else {

@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const groupSelect = document.getElementById('groupFilter1');
                 if (groupSelect) {
                     groupSelect.value = groupParam;
+                    if (typeof logger !== 'undefined') logger.log('Set group filter to:', groupParam);
                 }
             }
             
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const classSelect = document.getElementById('classFilter1');
                 if (classSelect) {
                     classSelect.value = classParam;
+                    if (typeof logger !== 'undefined') logger.log('Set class filter to:', classParam);
                 }
             }
             
@@ -129,6 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (groupParam || classParam) {
                 if (typeof applyFilters === 'function') {
                     applyFilters('year1');
+                    if (typeof logger !== 'undefined') logger.log('Applied filters from URL parameters');
+                } else {
+                    console.warn('applyFilters function not available');
+                }
+            } else {
+                // Update result count even when no filters applied
+                if (typeof updateResultCount === 'function') {
+                    updateResultCount('year1', ['Saturday', 'Sunday', 'Wednesday'], ['']);
                 }
             }
         } else {
