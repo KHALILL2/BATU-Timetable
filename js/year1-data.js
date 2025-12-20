@@ -13,12 +13,12 @@ const year1Group1Data = [
     { day: 'Saturday', time: '11:40 AM-1:00 PM', class: '2', subject: 'Math Section', room: 'Hall 315', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
     { day: 'Saturday', time: '11:40 AM-12:20 PM', class: '3', subject: 'Physics Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
     { day: 'Saturday', time: '12:20 PM-1:00 PM', class: '4', subject: 'Physics Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
-    { day: 'Saturday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'English', room: 'Auditorium 118', instructor: 'Dr. Mohamed El-Qadeem', type: 'Lecture', group: '1', classDiv: 'All' },
-    { day: 'Saturday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'Python Programming', room: 'Auditorium 118', instructor: 'Dr. Mohamed Abdel Fattah', type: 'Lecture', group: '1', classDiv: 'All' },
+    { day: 'Saturday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'English', room: 'Lecture Hall 118', instructor: 'Dr. Mohamed El-Qadeem', type: 'Lecture', group: '1', classDiv: 'All' },
+    { day: 'Saturday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'Python Programming', room: 'Lecture Hall 118', instructor: 'Dr. Mohamed Abdel Fattah', type: 'Lecture', group: '1', classDiv: 'All' },
     
     // SUNDAY - Group 1
-    { day: 'Sunday', time: '9:00 AM-10:20 AM', class: 'All', subject: 'Math 1', room: 'Auditorium 118', instructor: 'Dr. Mohamed El-Shadhly', type: 'Lecture', group: '1', classDiv: 'All' },
-    { day: 'Sunday', time: '10:20 AM-11:40 AM', class: 'All', subject: 'Physics', room: 'Auditorium 118', instructor: 'Dr. Mohamed Adel', type: 'Lecture', group: '1', classDiv: 'All' },
+    { day: 'Sunday', time: '9:00 AM-10:20 AM', class: 'All', subject: 'Math 1', room: 'Lecture Hall 118', instructor: 'Dr. Mohamed El-Shadhly', type: 'Lecture', group: '1', classDiv: 'All' },
+    { day: 'Sunday', time: '10:20 AM-11:40 AM', class: 'All', subject: 'Physics', room: 'Lecture Hall 118', instructor: 'Dr. Mohamed Adel', type: 'Lecture', group: '1', classDiv: 'All' },
     { day: 'Sunday', time: '11:40 AM-1:00 PM', class: '1', subject: 'Python Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     { day: 'Sunday', time: '1:00 PM-2:20 PM', class: '1', subject: 'IT Section', room: 'Hall 106 A+B', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
     { day: 'Sunday', time: '11:40 AM-1:00 PM', class: '2', subject: 'Math Section', room: 'Hall 315', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
@@ -36,8 +36,8 @@ const year1Group1Data = [
     { day: 'Wednesday', time: '9:00 AM-10:20 AM', class: '2', subject: 'Python Lab 1', room: 'Lab 1', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     { day: 'Wednesday', time: '9:00 AM-10:20 AM', class: '3', subject: 'Python Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '1', classDiv: 'All' },
     { day: 'Wednesday', time: '10:20 AM-11:00 AM', class: '4', subject: 'Math Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '1', classDiv: 'All' },
-    { day: 'Wednesday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'IT', room: 'Auditorium 118', instructor: 'Dr. May Mohamed', type: 'Lecture', group: '1', classDiv: 'All' },
-    { day: 'Wednesday', time: '1:00 PM-1:40 PM', class: 'All', subject: 'Cyber Security', room: 'Auditorium 118', instructor: 'Dr. Heman El-Sayed', type: 'Lecture', group: '1', classDiv: 'All' }
+    { day: 'Wednesday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'IT', room: 'Lecture Hall 118', instructor: 'Dr. May Mohamed', type: 'Lecture', group: '1', classDiv: 'All' },
+    { day: 'Wednesday', time: '1:00 PM-1:40 PM', class: 'All', subject: 'Cyber Security', room: 'Lecture Hall 118', instructor: 'Dr. Heman El-Sayed', type: 'Lecture', group: '1', classDiv: 'All' }
 ];
 
 // Year 1 - Group 2 Timetable
@@ -48,13 +48,13 @@ const year1Group2Data = [
     { day: 'Saturday', time: '9:40 AM-10:20 AM', class: '4', subject: 'Physics Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'All' },
     { day: 'Saturday', time: '10:20 AM-11:00 AM', class: '2', subject: 'Math Section', room: 'Hall 315', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'All' },
     { day: 'Saturday', time: '11:00 AM-11:40 AM', class: '2', subject: 'Physics Section', room: 'Hall 205', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'English', room: 'Auditorium A101', instructor: 'Dr. Mohamed El-Qadeem', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Python Programming', room: 'Auditorium A101', instructor: 'Dr. Mohamed Abdel Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Saturday', time: '3:00 PM-3:45 PM', class: 'All', subject: 'Physics', room: 'Auditorium A301', instructor: 'Dr. Jaser', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '11:40 AM-1:00 PM', class: 'All', subject: 'English', room: 'Lecture Hall A101', instructor: 'Dr. Mohamed El-Qadeem', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '1:00 PM-2:20 PM', class: 'All', subject: 'Python Programming', room: 'Lecture Hall A101', instructor: 'Dr. Mohamed Abdel Fattah', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Saturday', time: '3:00 PM-3:45 PM', class: 'All', subject: 'Physics', room: 'Lecture Hall A301', instructor: 'Dr. Jaser', type: 'Lecture', group: '2', classDiv: 'All' },
     
     // SUNDAY - Group 2
-    { day: 'Sunday', time: '9:00 AM-10:20 AM', class: 'All', subject: 'Physics', room: 'Auditorium A301', instructor: 'Dr. Jaser', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Sunday', time: '10:20 AM-11:40 AM', class: 'All', subject: 'Math 1', room: 'Auditorium A301', instructor: 'Dr. Mohamed El-Shadhly', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Sunday', time: '9:00 AM-10:20 AM', class: 'All', subject: 'Physics', room: 'Lecture Hall A301', instructor: 'Dr. Jaser', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Sunday', time: '10:20 AM-11:40 AM', class: 'All', subject: 'Math 1', room: 'Lecture Hall A301', instructor: 'Dr. Mohamed El-Shadhly', type: 'Lecture', group: '2', classDiv: 'All' },
     { day: 'Sunday', time: '11:40 AM-1:00 PM', class: '1', subject: 'Python Lab 2', room: 'Lab 2', instructor: 'Lab Instructor', type: 'Lab', group: '2', classDiv: 'All' },
     { day: 'Sunday', time: '11:40 AM-1:00 PM', class: '2', subject: 'IT Section', room: 'Hall 106', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'A+B' },
     { day: 'Sunday', time: '11:40 AM-1:00 PM', class: '3', subject: 'IT Section', room: 'Hall 316', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'A' },
@@ -73,8 +73,8 @@ const year1Group2Data = [
     // WEDNESDAY - Group 2
     { day: 'Wednesday', time: '9:00 AM-9:40 AM', class: '1', subject: 'Math Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'All' },
     { day: 'Wednesday', time: '11:40 AM-1:00 PM', class: '4', subject: 'Math Section', room: 'Hall 304', instructor: 'TBD', type: 'Section', group: '2', classDiv: 'All' },
-    { day: 'Wednesday', time: '1:40 PM-2:20 PM', class: 'All', subject: 'Cyber Security', room: 'Auditorium A118', instructor: 'Dr. Heman', type: 'Lecture', group: '2', classDiv: 'All' },
-    { day: 'Wednesday', time: '3:00 PM-3:45 PM', class: 'All', subject: 'IT', room: 'Auditorium A118', instructor: 'Dr. Heman', type: 'Lecture', group: '2', classDiv: 'All' }
+    { day: 'Wednesday', time: '1:40 PM-2:20 PM', class: 'All', subject: 'Cyber Security', room: 'Lecture Hall A118', instructor: 'Dr. Heman', type: 'Lecture', group: '2', classDiv: 'All' },
+    { day: 'Wednesday', time: '3:00 PM-3:45 PM', class: 'All', subject: 'IT', room: 'Lecture Hall A118', instructor: 'Dr. Heman', type: 'Lecture', group: '2', classDiv: 'All' }
 ];
 
 // Year 1 - Group 3 Timetable
@@ -86,7 +86,7 @@ const year1Group3Data = [
     { day: 'Saturday', time: '1:00 PM-2:20 PM', class: '1', subject: 'IT Section', room: 'Hall 207', instructor: 'TBD', type: 'Section', group: '3', classDiv: 'A' },
     { day: 'Saturday', time: '1:00 PM-2:20 PM', class: '1', subject: 'IT Section', room: 'Hall 316', instructor: 'TBD', type: 'Section', group: '3', classDiv: 'B' },
     { day: 'Saturday', time: '1:00 PM-2:20 PM', class: '2', subject: 'Physics Section', room: 'Hall 106', instructor: 'TBD', type: 'Section', group: '3', classDiv: 'A+B' },
-    { day: 'Saturday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'English', room: 'Auditorium A101', instructor: 'Dr. Khaled', type: 'Lecture', group: '3', classDiv: 'All' }
+    { day: 'Saturday', time: '2:20 PM-3:45 PM', class: 'All', subject: 'English', room: 'Lecture Hall A101', instructor: 'Dr. Khaled', type: 'Lecture', group: '3', classDiv: 'All' }
 ];
 
 // Note: Year 1 Group 3 Sunday and Wednesday schedules were not provided in the complete data
