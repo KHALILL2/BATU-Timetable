@@ -1,107 +1,95 @@
-/*
- * BATU Timetable - Main JavaScript
- * 
- * Developed by: Khalil Muhammad & Mohammed Ali
- * For: Web Programming Course, 2nd Year IT
- * 
- * This handles:
- * - Day and class filtering
- * - Search functionality
- * - Course details modal
- * - Smooth animations
- */
+// BATU Timetable - Main JavaScript
+// Made by: Khalil Muhammad & Mohammed Ali
+// For our Web Programming project, 2nd Year
 
-// Global data storage
+// Store all the timetable data here
 let allTimetableData = {};
 
-// Browser storage keys
-const STORAGE_KEYS = {
+// Keys for saving stuff in browser
+let STORAGE_KEYS = {
     THEME: 'batu_theme_preference',
     LAST_VIEWED: 'batu_last_viewed_year',
     FILTER_PREFERENCES: 'batu_filter_preferences'
 };
 
-// Initialize everything when page loads
+// Start everything when page finishes loading
 document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initNavbarScroll();
     loadUserPreferences();
     
-    // Home page search
-    if (document.getElementById('globalSearch')) {
+    // Setup search if we're on home page
+    let searchBox = document.getElementById('globalSearch');
+    if (searchBox) {
         initGlobalSearch();
     }
     
     saveLastViewedPage();
-    activateTabFromHash(); // For Year 3/4 tabs
+    activateTabFromHash();
     initScrollAnimations();
     
     if (typeof logger !== 'undefined') {
-        logger.log('Timetable loaded successfully!');
+        logger.log('Timetable loaded!');
     }
 });
 
-// Navbar - hide on scroll down, show on scroll up
+// Hide/show navbar when scrolling
 function initNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
+    let navbar = document.querySelector('.navbar');
     if (!navbar) return;
     
-    let lastScrollTop = 0;
+    let lastScroll = 0;
     let scrollThreshold = 5;
-    let isScrolling;
+    let scrollTimer;
     
     window.addEventListener('scroll', function() {
-        // Clear timeout if it exists
-        clearTimeout(isScrolling);
+        clearTimeout(scrollTimer);
         
-        // Set a timeout to run after scrolling ends
-        isScrolling = setTimeout(function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        scrollTimer = setTimeout(function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Don't hide navbar at the very top of the page
-            if (scrollTop <= 100) {
+            // Keep navbar visible at top
+            if (currentScroll <= 100) {
                 navbar.classList.remove('navbar-hidden');
                 navbar.classList.add('navbar-visible');
                 return;
             }
             
-            // Check if scroll difference is significant enough
-            if (Math.abs(scrollTop - lastScrollTop) < scrollThreshold) {
+            // Only hide/show if scroll is significant
+            if (Math.abs(currentScroll - lastScroll) < scrollThreshold) {
                 return;
             }
             
-            if (scrollTop > lastScrollTop) {
-                // Scrolling down - hide navbar
+            if (currentScroll > lastScroll) {
+                // Scrolling down
                 navbar.classList.add('navbar-hidden');
                 navbar.classList.remove('navbar-visible');
             } else {
-                // Scrolling up - show navbar
+                // Scrolling up
                 navbar.classList.remove('navbar-hidden');
                 navbar.classList.add('navbar-visible');
             }
             
-            lastScrollTop = scrollTop;
-        }, 10); // Small delay to debounce
+            lastScroll = currentScroll;
+        }, 10);
     }, { passive: true });
     
-    // Ensure navbar is visible initially
     navbar.classList.add('navbar-visible');
 }
 
-/**
- * Makes clicking on links scroll smoothly instead of jumping
- */
+// Smooth scrolling for links
 function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+    let links = document.querySelectorAll('a[href^="#"]');
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function(e) {
+            let href = this.getAttribute('href');
             
-            // Skip if it's just "#" or a tab trigger
+            // Skip empty links or bootstrap tabs
             if (href === '#' || this.getAttribute('data-bs-toggle')) {
                 return;
             }
             
-            const target = document.querySelector(href);
+            let target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({
@@ -110,111 +98,100 @@ function initSmoothScrolling() {
                 });
             }
         });
-    });
-}
-
-// ========================================
-// SAVING USER STUFF (LocalStorage)
-// ========================================
-
-/**
- * Load what the user saved before
- */
-function loadUserPreferences() {
-    // Load last viewed page
-    const lastViewed = localStorage.getItem(STORAGE_KEYS.LAST_VIEWED);
-    // Silent load for production
-    
-    // Load filter preferences
-    const filterPrefs = localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES);
-    if (filterPrefs) {
-        const prefs = JSON.parse(filterPrefs);
-        // Preferences loaded successfully
     }
 }
 
-/**
- * Save the current page to localStorage
- */
+// ========================================
+// USER PREFERENCES (saving stuff)
+// ========================================
+
+// Load saved preferences
+function loadUserPreferences() {
+    // Check what page user viewed last time
+    let lastViewed = localStorage.getItem(STORAGE_KEYS.LAST_VIEWED);
+    
+    // Load filter settings
+    let filterPrefs = localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES);
+    if (filterPrefs) {
+        let prefs = JSON.parse(filterPrefs);
+        // Could apply these prefs automatically here
+    }
+}
+
+// Save current page to remember it later
 function saveLastViewedPage() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    let currentPage = window.location.pathname.split('/').pop() || 'index.html';
     localStorage.setItem(STORAGE_KEYS.LAST_VIEWED, currentPage);
 }
 
-/**
- * Save filter preferences to localStorage
- */
+// Save filter choices
 function saveFilterPreferences(year, filters) {
-    const prefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES) || '{}');
+    let allPrefs = localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES) || '{}';
+    let prefs = JSON.parse(allPrefs);
     prefs[year] = filters;
     localStorage.setItem(STORAGE_KEYS.FILTER_PREFERENCES, JSON.stringify(prefs));
 }
 
 // ========================================
-// TAB MANAGEMENT (Year 3/4 Majors)
+// TAB STUFF (for Year 3/4 majors)
 // ========================================
 
-/**
- * Activate tab based on URL hash
- */
+// Show the right tab based on URL
 function activateTabFromHash() {
-    const hash = window.location.hash;
+    let hash = window.location.hash;
     if (hash === '#software' || hash === '#network') {
-        const tabTrigger = document.querySelector(`button[data-bs-target="${hash}"]`);
-        if (tabTrigger) {
-            const tab = new bootstrap.Tab(tabTrigger);
+        let tabButton = document.querySelector('button[data-bs-target="' + hash + '"]');
+        if (tabButton) {
+            let tab = new bootstrap.Tab(tabButton);
             tab.show();
         }
     }
 }
 
-/**
- * Update URL hash when tab is clicked
- */
+// Update URL when tab changes
 document.addEventListener('shown.bs.tab', function(e) {
-    const target = e.target.getAttribute('data-bs-target');
+    let target = e.target.getAttribute('data-bs-target');
     if (target) {
         window.location.hash = target;
     }
 });
 
 // ========================================
-// FILTERING TIMETABLES
+// FILTERING
 // ========================================
 
-/**
- * Filter the timetable to show only one day
- * year = which year's timetable
- * day = which day to show (or 'all' for everything)
- */
+// Filter timetable to show only one day
 function filterByDay(year, day) {
-    const yearNum = year.replace('year', '');
+    let yearNum = year.replace('year', '');
     
-    // Update active tab state
-    const yearTabsContainer = document.getElementById(`dayTabs${yearNum}`);
-    if (yearTabsContainer) {
-        const allTabs = yearTabsContainer.querySelectorAll('.nav-link');
-        allTabs.forEach(tab => {
-            tab.classList.remove('active');
-        });
+    // Update which tab looks selected
+    let tabsContainer = document.getElementById('dayTabs' + yearNum);
+    if (tabsContainer) {
+        let allTabs = tabsContainer.querySelectorAll('.nav-link');
+        for (let i = 0; i < allTabs.length; i++) {
+            allTabs[i].classList.remove('active');
+        }
         
-        // Set the clicked tab as active
-        const activeTab = day === 'all' 
-            ? document.getElementById(`all-days-tab-${yearNum}`)
-            : document.getElementById(`${day}-tab-${yearNum}`);
-        
+        // Make clicked tab active
+        let activeTabId;
+        if (day === 'all') {
+            activeTabId = 'all-days-tab-' + yearNum;
+        } else {
+            activeTabId = day + '-tab-' + yearNum;
+        }
+        let activeTab = document.getElementById(activeTabId);
         if (activeTab) {
             activeTab.classList.add('active');
         }
     }
     
-    // Show/hide day-schedule containers (works for all years now)
-    const daySchedules = document.querySelectorAll('.day-schedule');
+    // Show/hide days
+    let daySchedules = document.querySelectorAll('.day-schedule');
     
     if (daySchedules.length > 0) {
-        // Show/hide day-schedule containers based on selection
-        daySchedules.forEach(schedule => {
-            const scheduleClasses = schedule.className.toLowerCase();
+        for (let i = 0; i < daySchedules.length; i++) {
+            let schedule = daySchedules[i];
+            let scheduleClasses = schedule.className.toLowerCase();
             
             if (day === 'all') {
                 schedule.style.display = '';
@@ -223,159 +200,203 @@ function filterByDay(year, day) {
             } else {
                 schedule.style.display = 'none';
             }
-        });
+        }
     }
     
-    // Save preference
+    // Save what user picked
     saveFilterPreferences(year, { day: day });
 }
 
-// Search timetable (checks course names, instructors, rooms)
+// Search through timetable
 function searchTimetable(year, searchText) {
-    const tbody = document.getElementById(`timetableBody${year.replace('year', '')}`);
+    let yearNum = year.replace('year', '');
+    let tbody = document.getElementById('timetableBody' + yearNum);
     if (!tbody) return;
     
-    const search = searchText.toLowerCase().trim();
+    let search = searchText.toLowerCase().trim();
+    let rows = tbody.querySelectorAll('tr');
     
-    tbody.querySelectorAll('tr').forEach(row => {
-        const matches = search === '' || row.textContent.toLowerCase().includes(search);
-        row.style.display = matches ? '' : 'none';
-    });
+    for (let i = 0; i < rows.length; i++) {
+        let row = rows[i];
+        let text = row.textContent.toLowerCase();
+        
+        if (search === '' || text.includes(search)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
 }
 
-// Reset all filters to default
+// Reset all filters back to default
 function resetFilters(year) {
-    const yearNum = year.replace('year', '');
+    let yearNum = year.replace('year', '');
     
-    const groupFilter = document.getElementById(`groupFilter${yearNum}`);
-    const classFilter = document.getElementById(`classFilter${yearNum}`);
+    let groupFilter = document.getElementById('groupFilter' + yearNum);
+    let classFilter = document.getElementById('classFilter' + yearNum);
     
     if (groupFilter) groupFilter.value = 'all';
     if (classFilter) classFilter.value = 'all';
     
-    // Reset search
-    const searchInput = document.getElementById(`searchInput${yearNum}`);
+    // Clear search box
+    let searchInput = document.getElementById('searchInput' + yearNum);
     if (searchInput) {
         searchInput.value = '';
     }
     
-    // Show all rows
-    const days = {
-        'year1': ['Saturday', 'Sunday', 'Wednesday'],
-        'year2': ['Saturday', 'Monday', 'Tuesday'],
-        'year3': ['Saturday', 'Monday', 'Tuesday'],
-        'year4': ['Saturday', 'Sunday', 'Wednesday']
-    };
+    // Figure out which days this year has
+    let yearDays = [];
+    let tracks = [''];
     
-    const yearDays = days[year] || [];
-    const tracks = (year === 'year3' || year === 'year4') ? ['SW', 'NET'] : [''];
+    if (year === 'year1') {
+        yearDays = ['Saturday', 'Sunday', 'Wednesday'];
+    } else if (year === 'year2') {
+        yearDays = ['Saturday', 'Monday', 'Tuesday'];
+    } else if (year === 'year3') {
+        yearDays = ['Saturday', 'Monday', 'Tuesday'];
+        tracks = ['SW', 'NET'];
+    } else if (year === 'year4') {
+        yearDays = ['Saturday', 'Sunday', 'Wednesday'];
+        tracks = ['SW', 'NET'];
+    }
     
-    tracks.forEach(track => {
-        yearDays.forEach(day => {
-            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
-            const table = document.getElementById(tableId);
-            if (table) {
-                table.querySelectorAll('tr').forEach(row => {
-                    row.style.display = '';
-                });
+    // Show all rows in all tables
+    for (let t = 0; t < tracks.length; t++) {
+        let track = tracks[t];
+        for (let d = 0; d < yearDays.length; d++) {
+            let day = yearDays[d];
+            let tableId;
+            if (track) {
+                tableId = 'timetableBody' + yearNum + track + day;
+            } else {
+                tableId = 'timetableBody' + yearNum + day;
             }
-        });
-    });
+            
+            let table = document.getElementById(tableId);
+            if (table) {
+                let rows = table.querySelectorAll('tr');
+                for (let r = 0; r < rows.length; r++) {
+                    rows[r].style.display = '';
+                }
+            }
+        }
+    }
     
-    // Update result count
+    // Update count
     updateResultCount(year, yearDays, tracks);
     
     // Clear saved preferences
-    const prefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES) || '{}');
+    let allPrefs = localStorage.getItem(STORAGE_KEYS.FILTER_PREFERENCES) || '{}';
+    let prefs = JSON.parse(allPrefs);
     delete prefs[year];
     localStorage.setItem(STORAGE_KEYS.FILTER_PREFERENCES, JSON.stringify(prefs));
 }
 
 // Apply group and class filters
 function applyFilters(year) {
-    const yearNum = year.replace('year', '');
-    const groupFilter = document.getElementById(`groupFilter${yearNum}`);
-    const classFilter = document.getElementById(`classFilter${yearNum}`);
+    let yearNum = year.replace('year', '');
+    let groupFilter = document.getElementById('groupFilter' + yearNum);
+    let classFilter = document.getElementById('classFilter' + yearNum);
     
-    if (!classFilter) return; // Year 3-4 might not have all filters
+    if (!classFilter) return;
     
-    const selectedGroup = groupFilter ? groupFilter.value : 'all';
-    const selectedClass = classFilter.value;
+    let selectedGroup = groupFilter ? groupFilter.value : 'all';
+    let selectedClass = classFilter.value;
     
-    // Apply filters to all day tables for this year
-    const days = {
-        'year1': ['Saturday', 'Sunday', 'Wednesday'],
-        'year2': ['Saturday', 'Monday', 'Tuesday'],
-        'year3': ['Saturday', 'Monday', 'Tuesday'],
-        'year4': ['Saturday', 'Sunday', 'Wednesday']
-    };
+    // Get days for this year
+    let yearDays = [];
+    let tracks = [''];
     
-    const yearDays = days[year] || [];
+    if (year === 'year1') {
+        yearDays = ['Saturday', 'Sunday', 'Wednesday'];
+    } else if (year === 'year2') {
+        yearDays = ['Saturday', 'Monday', 'Tuesday'];
+    } else if (year === 'year3') {
+        yearDays = ['Saturday', 'Monday', 'Tuesday'];
+        tracks = ['SW', 'NET'];
+    } else if (year === 'year4') {
+        yearDays = ['Saturday', 'Sunday', 'Wednesday'];
+        tracks = ['SW', 'NET'];
+    }
     
-    // For Year 3-4, we need to apply to both SW and NET tracks
-    const tracks = (year === 'year3' || year === 'year4') ? ['SW', 'NET'] : [''];
-    
-    tracks.forEach(track => {
-        yearDays.forEach(day => {
-            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
-            const table = document.getElementById(tableId);
-            if (!table) return;
+    // Apply filters to each table
+    for (let t = 0; t < tracks.length; t++) {
+        let track = tracks[t];
+        for (let d = 0; d < yearDays.length; d++) {
+            let day = yearDays[d];
+            let tableId;
+            if (track) {
+                tableId = 'timetableBody' + yearNum + track + day;
+            } else {
+                tableId = 'timetableBody' + yearNum + day;
+            }
             
-            let visibleCount = 0;
-            table.querySelectorAll('tr').forEach(row => {
-                const rowGroup = row.getAttribute('data-group');
-                const rowClass = row.getAttribute('data-class');
+            let table = document.getElementById(tableId);
+            if (!table) continue;
+            
+            let rows = table.querySelectorAll('tr');
+            for (let r = 0; r < rows.length; r++) {
+                let row = rows[r];
+                let rowGroup = row.getAttribute('data-group');
+                let rowClass = row.getAttribute('data-class');
                 
-                const groupMatch = selectedGroup === 'all' || rowGroup === selectedGroup;
-                const classMatch = selectedClass === 'all' || rowClass === selectedClass || rowClass === 'All';
+                let groupMatch = (selectedGroup === 'all' || rowGroup === selectedGroup);
+                let classMatch = (selectedClass === 'all' || rowClass === selectedClass || rowClass === 'All');
                 
                 if (groupMatch && classMatch) {
                     row.style.display = '';
-                    visibleCount++;
                 } else {
                     row.style.display = 'none';
                 }
-            });
-        });
-    });
+            }
+        }
+    }
     
     updateResultCount(year, yearDays, tracks);
 }
 
-/**
- * Update result count display
- */
+// Update the count of visible classes
 function updateResultCount(year, yearDays, tracks) {
-    const yearNum = year.replace('year', '');
-    const countElement = document.getElementById(`resultCount${yearNum}`);
+    let yearNum = year.replace('year', '');
+    let countElement = document.getElementById('resultCount' + yearNum);
     
     if (!countElement) return;
     
     let totalVisible = 0;
     
-    tracks.forEach(track => {
-        yearDays.forEach(day => {
-            const tableId = track ? `timetableBody${yearNum}${track}${day}` : `timetableBody${yearNum}${day}`;
-            const table = document.getElementById(tableId);
-            if (!table) return;
+    for (let t = 0; t < tracks.length; t++) {
+        let track = tracks[t];
+        for (let d = 0; d < yearDays.length; d++) {
+            let day = yearDays[d];
+            let tableId;
+            if (track) {
+                tableId = 'timetableBody' + yearNum + track + day;
+            } else {
+                tableId = 'timetableBody' + yearNum + day;
+            }
             
-            const visibleRows = Array.from(table.querySelectorAll('tr')).filter(row => row.style.display !== 'none');
-            totalVisible += visibleRows.length;
-        });
-    });
+            let table = document.getElementById(tableId);
+            if (!table) continue;
+            
+            let rows = table.querySelectorAll('tr');
+            for (let r = 0; r < rows.length; r++) {
+                if (rows[r].style.display !== 'none') {
+                    totalVisible++;
+                }
+            }
+        }
+    }
     
-    countElement.textContent = `Showing ${totalVisible} classes`;
+    countElement.textContent = 'Showing ' + totalVisible + ' classes';
 }
 
 // ========================================
-// GLOBAL SEARCH (Home Page)
+// HOME PAGE SEARCH
 // ========================================
 
-/**
- * Initialize global search functionality
- */
+// Setup search box on home page
 function initGlobalSearch() {
-    const searchInput = document.getElementById('globalSearch');
+    let searchInput = document.getElementById('globalSearch');
     if (!searchInput) return;
     
     searchInput.addEventListener('input', debounce(function(e) {
@@ -383,23 +404,20 @@ function initGlobalSearch() {
     }, 300));
 }
 
-/**
- * Perform search across all timetables
- * @param {string} searchText - Text to search for
- */
+// Search across all timetables
 function performGlobalSearch(searchText) {
-    const resultsContainer = document.getElementById('searchResults');
+    let resultsContainer = document.getElementById('searchResults');
     if (!resultsContainer) return;
     
-    const search = searchText.toLowerCase().trim();
+    let search = searchText.toLowerCase().trim();
     
     if (search === '') {
-        resultsContainer.innerHTML = '<p class="text-muted text-center">Start typing to search across all timetables...</p>';
+        resultsContainer.innerHTML = '<p class="text-muted text-center">Start typing to search...</p>';
         return;
     }
     
-    // This is a placeholder - you would search through actual timetable data
-    const sampleResults = [
+    // Sample results for now - would search real data later
+    let sampleResults = [
         {
             year: 'Year 1',
             subject: 'Mathematics 101',
@@ -416,89 +434,116 @@ function performGlobalSearch(searchText) {
             time: '11:00 AM',
             room: 'B202'
         }
-    ].filter(item => 
-        item.subject.toLowerCase().includes(search) ||
-        item.instructor.toLowerCase().includes(search) ||
-        item.room.toLowerCase().includes(search)
-    );
+    ];
     
-    if (sampleResults.length === 0) {
+    // Filter results
+    let matchingResults = [];
+    for (let i = 0; i < sampleResults.length; i++) {
+        let item = sampleResults[i];
+        if (item.subject.toLowerCase().includes(search) ||
+            item.instructor.toLowerCase().includes(search) ||
+            item.room.toLowerCase().includes(search)) {
+            matchingResults.push(item);
+        }
+    }
+    
+    if (matchingResults.length === 0) {
         resultsContainer.innerHTML = '<p class="text-muted text-center">No results found.</p>';
         return;
     }
     
+    // Build HTML
     let html = '';
-    sampleResults.forEach(result => {
-        html += `
-            <div class="search-result-item">
-                <h6 class="mb-1"><strong>${result.subject}</strong></h6>
-                <p class="mb-1 text-muted">
-                    <i class="fas fa-calendar"></i> ${result.day} ${result.time} | 
-                    <i class="fas fa-door-open"></i> ${result.room} | 
-                    <i class="fas fa-user"></i> ${result.instructor}
-                </p>
-                <small class="badge bg-primary">${result.year}</small>
-            </div>
-        `;
-    });
+    for (let i = 0; i < matchingResults.length; i++) {
+        let result = matchingResults[i];
+        html += '<div class="search-result-item">';
+        html += '<h6 class="mb-1"><strong>' + result.subject + '</strong></h6>';
+        html += '<p class="mb-1 text-muted">';
+        html += '<i class="fas fa-calendar"></i> ' + result.day + ' ' + result.time + ' | ';
+        html += '<i class="fas fa-door-open"></i> ' + result.room + ' | ';
+        html += '<i class="fas fa-user"></i> ' + result.instructor;
+        html += '</p>';
+        html += '<small class="badge bg-primary">' + result.year + '</small>';
+        html += '</div>';
+    }
     
     resultsContainer.innerHTML = html;
 }
 
 // ========================================
-// COURSE DETAILS MODAL
+// COURSE DETAILS POPUP
 // ========================================
 
-/**
- * Show course details in modal with full course information
- * @param {Object} course - Course data object from timetable
- */
+// Show course info in a popup
 function showCourseDetails(course) {
     try {
-        // Get course details from database if available
-        const courseDetails = typeof getCourseDetails === 'function' ? getCourseDetails(course.subject) : null;
+        // Get extra course info if available
+        let courseDetails = null;
+        if (typeof getCourseDetails === 'function') {
+            courseDetails = getCourseDetails(course.subject);
+        }
         
-        // Update modal title
-        const modalTitle = document.getElementById('courseModalLabel');
+        // Update popup title
+        let modalTitle = document.getElementById('courseModalLabel');
         if (modalTitle) {
-            modalTitle.innerHTML = `<i class="fas fa-book"></i> ${course.subject}`;
+            modalTitle.innerHTML = '<i class="fas fa-book"></i> ' + course.subject;
         }
     
-    // Populate class details (right side card)
+    // Fill in class details
     setTextContent('modalDay', course.day);
     setTextContent('modalTime', course.time);
     setTextContent('modalRoom', course.room);
     setTextContent('modalInstructor', course.instructor);
-    setTextContent('modalGroup', course.group ? `Group ${course.group}` : 'N/A');
     
-    const typeElement = document.getElementById('modalType');
-    if (typeElement) {
-        typeElement.textContent = course.type;
-        typeElement.className = `badge ${getBadgeClass(course.type)}`;
+    if (course.group) {
+        setTextContent('modalGroup', 'Group ' + course.group);
+    } else {
+        setTextContent('modalGroup', 'N/A');
     }
     
-    // If we have detailed course info from database
+    let typeElement = document.getElementById('modalType');
+    if (typeElement) {
+        typeElement.textContent = course.type;
+        typeElement.className = 'badge ' + getBadgeClass(course.type);
+    }
+    
+    // If we have detailed course info
     if (courseDetails) {
-        // Course code and title
+        // Basic course info
         setTextContent('modalCourseCode', courseDetails.code || 'N/A');
         setTextContent('modalCourseTitle', courseDetails.title || course.subject);
         
-        // Course information
-        setTextContent('modalCredits', courseDetails.credits ? `${courseDetails.credits} Credits` : 'N/A');
+        // Credits and semester
+        if (courseDetails.credits) {
+            setTextContent('modalCredits', courseDetails.credits + ' Credits');
+        } else {
+            setTextContent('modalCredits', 'N/A');
+        }
         setTextContent('modalSemester', courseDetails.semester || 'N/A');
-        setTextContent('modalTotalHours', courseDetails.hours ? `${courseDetails.hours.total} hours/week` : 'N/A');
+        
+        // Hours
+        if (courseDetails.hours && courseDetails.hours.total) {
+            setTextContent('modalTotalHours', courseDetails.hours.total + ' hours/week');
+        } else {
+            setTextContent('modalTotalHours', 'N/A');
+        }
         setTextContent('modalYear', courseDetails.year || 'N/A');
         
         // Hours breakdown
         if (courseDetails.hours) {
-            const breakdown = typeof formatCourseHours === 'function' 
-                ? formatCourseHours(courseDetails.hours) 
-                : `${courseDetails.hours.lecture}h Lecture + ${courseDetails.hours.tutorial}h Tutorial + ${courseDetails.hours.lab}h Lab`;
+            let breakdown;
+            if (typeof formatCourseHours === 'function') {
+                breakdown = formatCourseHours(courseDetails.hours);
+            } else {
+                breakdown = courseDetails.hours.lecture + 'h Lecture + ' + 
+                           courseDetails.hours.tutorial + 'h Tutorial + ' + 
+                           courseDetails.hours.lab + 'h Lab';
+            }
             setTextContent('modalHoursBreakdown', breakdown);
         }
         
         // Description
-        const descSection = document.getElementById('modalDescriptionSection');
+        let descSection = document.getElementById('modalDescriptionSection');
         if (courseDetails.description) {
             setTextContent('modalDescription', courseDetails.description);
             descSection.style.display = '';
@@ -506,17 +551,21 @@ function showCourseDetails(course) {
             descSection.style.display = 'none';
         }
         
-        // Topics
-        const topicsSection = document.getElementById('modalTopicsSection');
-        const topicsList = document.getElementById('modalTopics');
+        // Topics list
+        let topicsSection = document.getElementById('modalTopicsSection');
+        let topicsList = document.getElementById('modalTopics');
         if (courseDetails.topics && courseDetails.topics.length > 0) {
-            topicsList.innerHTML = courseDetails.topics.map(topic => `<li>${topic}</li>`).join('');
+            let topicsHtml = '';
+            for (let i = 0; i < courseDetails.topics.length; i++) {
+                topicsHtml += '<li>' + courseDetails.topics[i] + '</li>';
+            }
+            topicsList.innerHTML = topicsHtml;
             topicsSection.style.display = '';
         } else {
             topicsSection.style.display = 'none';
         }
     } else {
-        // No detailed info available - show basic info
+        // No detailed info - just show basics
         setTextContent('modalCourseCode', 'Course Info Not Available');
         setTextContent('modalCourseTitle', course.subject);
         setTextContent('modalCredits', 'N/A');
@@ -525,283 +574,258 @@ function showCourseDetails(course) {
         setTextContent('modalYear', 'N/A');
         setTextContent('modalHoursBreakdown', 'N/A');
         
-        // Hide description and topics sections
-        const descSection = document.getElementById('modalDescriptionSection');
-        const topicsSection = document.getElementById('modalTopicsSection');
+        // Hide extra sections
+        let descSection = document.getElementById('modalDescriptionSection');
+        let topicsSection = document.getElementById('modalTopicsSection');
         if (descSection) descSection.style.display = 'none';
         if (topicsSection) topicsSection.style.display = 'none';
     }
     
-    // Show the modal
-    const modal = new bootstrap.Modal(document.getElementById('courseModal'));
+    // Show the popup
+    let modal = new bootstrap.Modal(document.getElementById('courseModal'));
     modal.show();
     } catch (error) {
-        // Silently handle errors in production
+        // Ignore errors silently
         if (CONFIG && CONFIG.DEBUG_MODE) {
             console.error('Error showing course details:', error);
         }
     }
 }
 
-/**
- * Helper function to safely set text content
- * @param {string} elementId - Element ID
- * @param {string} text - Text to set
- */
+// Helper to set text safely
 function setTextContent(elementId, text) {
-    const element = document.getElementById(elementId);
+    let element = document.getElementById(elementId);
     if (element) {
-        element.textContent = text || 'N/A';
+        if (text) {
+            element.textContent = text;
+        } else {
+            element.textContent = 'N/A';
+        }
     }
 }
 
-/**
- * Get badge class for course type
- * @param {string} type - Course type
- * @returns {string} - Bootstrap badge class
- */
+// Get the right color for course type badge
 function getBadgeClass(type) {
-    switch(type) {
-        case 'Lecture':
-            return 'badge-lecture';
-        case 'Lab':
-            return 'badge-lab';
-        case 'Tutorial':
-            return 'badge-tutorial';
-        default:
-            return 'bg-secondary';
+    if (type === 'Lecture') {
+        return 'badge-lecture';
+    } else if (type === 'Lab') {
+        return 'badge-lab';
+    } else if (type === 'Tutorial') {
+        return 'badge-tutorial';
+    } else {
+        return 'bg-secondary';
     }
 }
 
 // ========================================
-// SCROLL ANIMATIONS
+// ANIMATIONS
 // ========================================
 
-/**
- * Initialize scroll-triggered animations
- */
+// Make cards animate when scrolling
 function initScrollAnimations() {
-    const observerOptions = {
+    let observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
     
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-left');
+    let observer = new IntersectionObserver(function(entries) {
+        for (let i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+                entries[i].target.classList.add('animate-left');
             }
-        });
+        }
     }, observerOptions);
     
-    // Observe year cards
-    document.querySelectorAll('.year-card').forEach(card => {
-        observer.observe(card);
-    });
+    // Watch year cards
+    let cards = document.querySelectorAll('.year-card');
+    for (let i = 0; i < cards.length; i++) {
+        observer.observe(cards[i]);
+    }
 }
 
 // ========================================
-// UTILITY FUNCTIONS
-// ========================================
-// UTILITY FUNCTIONS (helper stuff)
+// HELPER FUNCTIONS
 // ========================================
 
-/**
- * Debounce - prevents search from running too many times
- * Makes it wait a bit before searching
- */
+// Prevents search from running too many times
 function debounce(func, wait) {
     let timeout;
-    return function(...args) {
-        const later = () => {
+    return function() {
+        let args = arguments;
+        let later = function() {
             clearTimeout(timeout);
-            func(...args);
+            func.apply(null, args);
         };
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
 }
 
-/**
- * Format time to 12-hour format
- * Convert 24-hour time to 12-hour (like 14:00 to 2:00 PM)
- * @param {string} time - Time in 24-hour format
- * @returns {string} - Time in 12-hour format
- */
+// Convert 24-hour time to 12-hour (like 14:00 to 2:00 PM)
 function formatTime(time) {
     if (!time) return time;
     
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
+    let parts = time.split(':');
+    let hours = parts[0];
+    let minutes = parts[1];
+    let hour = parseInt(hours);
+    
+    let ampm = 'AM';
+    if (hour >= 12) {
+        ampm = 'PM';
+    }
+    
+    let displayHour = hour % 12;
+    if (displayHour === 0) {
+        displayHour = 12;
+    }
+    
+    return displayHour + ':' + minutes + ' ' + ampm;
 }
 
-/**
- * Load and render timetable data into day-separated tables
- * @param {string} year - Year identifier
- * @param {Array} data - Timetable data array
- * @param {Array} days - Array of day names for this year
- */
+// ========================================
+// LOADING TIMETABLES
+// ========================================
+
+// Load timetable data for day-separated tables
 function loadTimetableByDays(year, data, days) {
     try {
-        const yearNum = year.replace('year', '');
+        let yearNum = year.replace('year', '');
         
-        days.forEach(day => {
-            const tbody = document.getElementById(`timetableBody${yearNum}${day}`);
-            if (!tbody) {
-                // Table not found - silent fail for GitHub Pages compatibility
-                return;
-            }
+        for (let d = 0; d < days.length; d++) {
+            let day = days[d];
+            let tbody = document.getElementById('timetableBody' + yearNum + day);
+            if (!tbody) continue;
             
-            // Clear existing content
+            // Clear table
             tbody.innerHTML = '';
             
-            // Filter data for this day
-            const dayData = data.filter(course => course.day === day);
+            // Get courses for this day
+            let dayData = [];
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].day === day) {
+                    dayData.push(data[i]);
+                }
+            }
             
-            // Create and append rows
-            dayData.forEach((course, index) => {
-                const row = createTimetableRowByDay(course, index);
+            // Add rows
+            for (let i = 0; i < dayData.length; i++) {
+                let row = createTimetableRowByDay(dayData[i], i);
                 tbody.appendChild(row);
-            });
-        });
+            }
+        }
     } catch (error) {
         if (CONFIG && CONFIG.DEBUG_MODE) {
-            console.error('Error loading timetable by days:', error);
+            console.error('Error loading timetable:', error);
         }
     }
 }
 
-/**
- * Create a timetable row for day-separated tables (no Day column)
- */
+// Create a table row for day-separated tables
 function createTimetableRowByDay(course, index) {
-    const tr = document.createElement('tr');
+    let tr = document.createElement('tr');
     tr.setAttribute('data-index', index);
     tr.setAttribute('data-day', course.day);
     tr.setAttribute('data-group', course.group || '');
     tr.setAttribute('data-class', course.class || '');
     tr.setAttribute('data-div', course.classDiv || '');
     
-    // Make row clickable to show course details
+    // Make clickable
     tr.style.cursor = 'pointer';
     tr.classList.add('course-row-clickable');
     tr.addEventListener('click', function() {
         showCourseDetails(course);
     });
     
-    // Check if this is Year 1-2 (with group column) or Year 3-4 (without group column)
-    // Year 1-2 have group property, Year 3-4 don't have group property
-    if (course.group !== undefined && course.group !== null && course.group !== '') {
-        // Year 1-2: Show Group column
-        tr.innerHTML = `
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
-            <td class="time-cell" data-label="Time:">${course.time}</td>
-            <td class="group-cell" data-label="Group:">Group ${course.group}</td>
-            <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
-            <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td class="room-cell" data-label="Place:">${course.room}</td>
-        `;
-    } else {
-        // Year 3-4: No Group column
-        tr.innerHTML = `
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
-            <td class="time-cell" data-label="Time:">${course.time}</td>
-            <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
-            <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td class="room-cell" data-label="Place:">${course.room}</td>
-        `;
+    // Check if year has groups (Year 1-2) or not (Year 3-4)
+    let hasGroup = (course.group !== undefined && course.group !== null && course.group !== '');
+    
+    let html = '';
+    html += '<td class="subject-cell" data-label="Subject:"><strong>' + course.subject + '</strong></td>';
+    html += '<td data-label="Type:"><span class="badge ' + getBadgeClass(course.type) + '">' + course.type + '</span></td>';
+    html += '<td class="time-cell" data-label="Time:">' + course.time + '</td>';
+    
+    if (hasGroup) {
+        html += '<td class="group-cell" data-label="Group:">Group ' + course.group + '</td>';
     }
     
+    if (course.class === 'All') {
+        html += '<td class="class-cell" data-label="Class:">All</td>';
+    } else {
+        html += '<td class="class-cell" data-label="Class:">Class ' + course.class + '</td>';
+    }
+    
+    html += '<td class="div-cell" data-label="Division:">' + course.classDiv + '</td>';
+    html += '<td class="instructor-cell" data-label="Instructor:">' + course.instructor + '</td>';
+    html += '<td class="room-cell" data-label="Place:">' + course.room + '</td>';
+    
+    tr.innerHTML = html;
     return tr;
 }
 
-/**
- * Load and render timetable data
- * @param {string} year - Year identifier
- * @param {Array} data - Timetable data array
- */
+// Load regular timetable data
 function loadTimetable(year, data) {
-    const tbody = document.getElementById(`timetableBody${year.replace('year', '')}`);
-    if (!tbody) {
-        // Table not found - silent fail for GitHub Pages compatibility
-        return;
-    }
+    let yearNum = year.replace('year', '');
+    let tbody = document.getElementById('timetableBody' + yearNum);
+    if (!tbody) return;
     
-    // Store data globally
+    // Store data
     allTimetableData[year] = data;
     
-    // Clear existing rows
+    // Clear table
     tbody.innerHTML = '';
     
-    // Render rows
-    data.forEach((course, index) => {
-        const row = createTimetableRow(course, index);
+    // Add rows
+    for (let i = 0; i < data.length; i++) {
+        let row = createTimetableRow(data[i], i);
         tbody.appendChild(row);
-    });
+    }
     
-    // Setup event listeners for filters
     setupFilterListeners(year);
 }
 
-/**
- * Create a timetable row element
- * @param {Object} course - Course data
- * @param {number} index - Row index
- * @returns {HTMLElement} - Table row element
- */
+// Create a regular table row
 function createTimetableRow(course, index) {
-    const tr = document.createElement('tr');
+    let tr = document.createElement('tr');
     tr.setAttribute('data-index', index);
     tr.setAttribute('data-day', course.day);
     tr.setAttribute('data-group', course.group || '');
     tr.setAttribute('data-class', course.class || '');
     tr.setAttribute('data-div', course.classDiv || '');
     
-    // Make row clickable to show course details
+    // Make clickable
     tr.style.cursor = 'pointer';
     tr.classList.add('course-row-clickable');
     tr.addEventListener('click', function() {
         showCourseDetails(course);
     });
     
-    // Year 1-2: Show Group column (multiple groups per year)
+    let html = '';
+    html += '<td class="day-cell" data-label="Day:">' + course.day + '</td>';
+    html += '<td class="time-cell" data-label="Time:">' + course.time + '</td>';
+    
+    // Year 1-2 have groups
     if (course.group && course.group > 1) {
-        tr.innerHTML = `
-            <td class="day-cell" data-label="Day:">${course.day}</td>
-            <td class="time-cell" data-label="Time:">${course.time}</td>
-            <td class="group-cell" data-label="Group:">Group ${course.group}</td>
-            <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
-            <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td class="room-cell" data-label="Room:">${course.room}</td>
-            <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
-        `;
-    } else {
-        // Year 3-4: No Group column (single group per track)
-        tr.innerHTML = `
-            <td class="day-cell" data-label="Day:">${course.day}</td>
-            <td class="time-cell" data-label="Time:">${course.time}</td>
-            <td class="class-cell" data-label="Class:">${course.class === 'All' ? 'All' : 'Class ' + course.class}</td>
-            <td class="div-cell" data-label="Division:">${course.classDiv}</td>
-            <td class="subject-cell" data-label="Subject:"><strong>${course.subject}</strong></td>
-            <td class="room-cell" data-label="Room:">${course.room}</td>
-            <td class="instructor-cell" data-label="Instructor:">${course.instructor}</td>
-            <td data-label="Type:"><span class="badge ${getBadgeClass(course.type)}">${course.type}</span></td>
-        `;
+        html += '<td class="group-cell" data-label="Group:">Group ' + course.group + '</td>';
     }
     
+    if (course.class === 'All') {
+        html += '<td class="class-cell" data-label="Class:">All</td>';
+    } else {
+        html += '<td class="class-cell" data-label="Class:">Class ' + course.class + '</td>';
+    }
+    
+    html += '<td class="div-cell" data-label="Division:">' + course.classDiv + '</td>';
+    html += '<td class="subject-cell" data-label="Subject:"><strong>' + course.subject + '</strong></td>';
+    html += '<td class="room-cell" data-label="Room:">' + course.room + '</td>';
+    html += '<td class="instructor-cell" data-label="Instructor:">' + course.instructor + '</td>';
+    html += '<td data-label="Type:"><span class="badge ' + getBadgeClass(course.type) + '">' + course.type + '</span></td>';
+    
+    tr.innerHTML = html;
     return tr;
 }
 
-// Make functions available globally (for HTML onclick handlers)
+// Make functions available for HTML onclick
 window.loadTimetableByDays = loadTimetableByDays;
 window.showCourseDetails = showCourseDetails;
 window.filterByDay = filterByDay;
