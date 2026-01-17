@@ -1,32 +1,30 @@
-/**
- * Personal Schedule Builder
- * Generates customized weekly schedules based on user selection
- */
+// Personal Schedule Builder
+// Made by: Khalil Muhammad & Mohammed Ali
 
 document.addEventListener('DOMContentLoaded', function() {
-    const yearSelect = document.getElementById('yearSelect');
-    const trackSelectContainer = document.getElementById('trackSelectContainer');
-    const groupSelectContainer = document.getElementById('groupSelectContainer');
-    const classSelectContainer = document.getElementById('classSelectContainer');
-    const trackSelect = document.getElementById('trackSelect');
-    const groupSelect = document.getElementById('groupSelect');
-    const classSelect = document.getElementById('classSelect');
-    const scheduleForm = document.getElementById('scheduleBuilderForm');
-    const scheduleResult = document.getElementById('scheduleResult');
+    let yearSelect = document.getElementById('yearSelect');
+    let trackSelectContainer = document.getElementById('trackSelectContainer');
+    let groupSelectContainer = document.getElementById('groupSelectContainer');
+    let classSelectContainer = document.getElementById('classSelectContainer');
+    let trackSelect = document.getElementById('trackSelect');
+    let groupSelect = document.getElementById('groupSelect');
+    let classSelect = document.getElementById('classSelect');
+    let scheduleForm = document.getElementById('scheduleBuilderForm');
+    let scheduleResult = document.getElementById('scheduleResult');
 
-    // Year selection change handler
+    // When user picks a year
     if (yearSelect) {
         yearSelect.addEventListener('change', function() {
-            const year = this.value;
+            let year = this.value;
             
-            // Reset other fields
+            // Clear other selections
             if (trackSelect) trackSelect.value = '';
             if (groupSelect) groupSelect.value = '';
             if (classSelect) classSelect.value = '';
             if (scheduleResult) scheduleResult.style.display = 'none';
             
             if (year === '3' || year === '4') {
-                // Show track selection for Year 3 & 4
+                // Year 3 & 4 need track selection
                 if (trackSelectContainer) {
                     trackSelectContainer.style.display = 'block';
                     trackSelect.required = true;
@@ -36,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (groupSelect) groupSelect.required = false;
                 if (classSelect) classSelect.required = false;
             } else if (year === '1' || year === '2') {
-                // Show group and class selection for Year 1 & 2
+                // Year 1 & 2 need group and class
                 if (trackSelectContainer) {
                     trackSelectContainer.style.display = 'none';
                     trackSelect.required = false;
@@ -46,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (groupSelect) groupSelect.required = true;
                 if (classSelect) classSelect.required = true;
                 
-                // Populate groups
+                // Fill group dropdown
                 populateGroups(year);
             } else {
-                // Hide all
+                // Hide everything
                 if (trackSelectContainer) trackSelectContainer.style.display = 'none';
                 if (groupSelectContainer) groupSelectContainer.style.display = 'none';
                 if (classSelectContainer) classSelectContainer.style.display = 'none';
@@ -60,35 +58,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Populate groups based on year
+    // Fill groups dropdown based on year
     function populateGroups(year) {
         groupSelect.innerHTML = '<option value="">Choose...</option>';
         
-        const groupCounts = {
-            '1': 3, // Year 1: 3 groups
-            '2': 4  // Year 2: 4 groups
-        };
+        let numGroups = 0;
+        if (year === '1') {
+            numGroups = 3; // Year 1 has 3 groups
+        } else if (year === '2') {
+            numGroups = 4; // Year 2 has 4 groups
+        }
         
-        const count = groupCounts[year] || 0;
-        for (let i = 1; i <= count; i++) {
-            const option = document.createElement('option');
+        for (let i = 1; i <= numGroups; i++) {
+            let option = document.createElement('option');
             option.value = i;
-            option.textContent = `Group ${i}`;
+            option.textContent = 'Group ' + i;
             groupSelect.appendChild(option);
         }
     }
 
-    // Form submission handler
+    // When form is submitted
     if (scheduleForm) {
         scheduleForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const year = yearSelect.value;
-            const track = trackSelect.value;
-            const group = groupSelect.value;
-            const classNum = classSelect.value;
+            let year = yearSelect.value;
+            let track = trackSelect.value;
+            let group = groupSelect.value;
+            let classNum = classSelect.value;
             
             if (year === '1' || year === '2') {
+                // Check if all required fields are filled
                 if (!year || !group || !classNum) {
                     alert('Please select all required fields');
                     return;
@@ -104,55 +104,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * Generate schedule for Year 1 & 2 (Group + Class based)
-     */
+    // Generate schedule for Year 1 & 2
     function generateSchedule(year, group, classNum) {
-        // Redirect to the appropriate year page with filters
-        scheduleResult.innerHTML = `
-            <div class="alert alert-success">
-                <h5><i class="fas fa-calendar-check"></i> Year ${year} Schedule</h5>
-                <p><strong>Year ${year}</strong> | <strong>Group ${group}</strong> | <strong>Class ${classNum}</strong></p>
-                <p class="mb-2">Redirecting to your personalized schedule...</p>
-            </div>
-        `;
+        // Show success message
+        let html = '<div class="alert alert-success">';
+        html += '<h5><i class="fas fa-calendar-check"></i> Year ' + year + ' Schedule</h5>';
+        html += '<p><strong>Year ' + year + '</strong> | <strong>Group ' + group + '</strong> | <strong>Class ' + classNum + '</strong></p>';
+        html += '<p class="mb-2">Redirecting to your personalized schedule...</p>';
+        html += '</div>';
+        
+        scheduleResult.innerHTML = html;
         scheduleResult.style.display = 'block';
         
-        // Redirect to year page with group and class filters applied
-        setTimeout(() => {
-            window.location.href = `pages/year${year}.html?group=${group}&class=${classNum}`;
+        // Go to year page with filters
+        setTimeout(function() {
+            window.location.href = 'pages/year' + year + '.html?group=' + group + '&class=' + classNum;
         }, 1000);
     }
 
-    /**
-     * Generate schedule for Year 3 & 4 (Track based)
-     */
+    // Generate schedule for Year 3 & 4
     function generateScheduleForTrack(year, track) {
-        const trackName = track === 'software' ? 'Software Development' : 'Network Engineering';
+        let trackName;
+        if (track === 'software') {
+            trackName = 'Software Development';
+        } else {
+            trackName = 'Network Engineering';
+        }
         
-        scheduleResult.innerHTML = `
-            <div class="alert alert-success">
-                <h5><i class="fas fa-calendar-check"></i> Year ${year} - ${trackName}</h5>
-                <p><strong>Year ${year}</strong> | <strong>${trackName} Track</strong></p>
-                <p class="mb-2">Redirecting to your personalized schedule...</p>
-            </div>
-        `;
+        let html = '<div class="alert alert-success">';
+        html += '<h5><i class="fas fa-calendar-check"></i> Year ' + year + ' - ' + trackName + '</h5>';
+        html += '<p><strong>Year ' + year + '</strong> | <strong>' + trackName + ' Track</strong></p>';
+        html += '<p class="mb-2">Redirecting to your personalized schedule...</p>';
+        html += '</div>';
+        
+        scheduleResult.innerHTML = html;
         scheduleResult.style.display = 'block';
         
-        // Redirect to year page with track tab
-        setTimeout(() => {
-            window.location.href = `pages/year${year}.html#${track}`;
+        // Go to year page with track
+        setTimeout(function() {
+            window.location.href = 'pages/year' + year + '.html#' + track;
         }, 1000);
     }
 
-    /**
-     * Display weekly schedule organized by days
-     */
+    // Display weekly schedule
     function displayWeeklySchedule(data, year, group, classNum) {
         // Filter data for selected group and class
-        const filteredData = data.filter(item => {
-            return item.group === group && (item.class === classNum || item.class === 'All');
-        });
+        let filteredData = [];
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+            if (item.group === group && (item.class === classNum || item.class === 'All')) {
+                filteredData.push(item);
+            }
+        }
 
         if (filteredData.length === 0) {
             scheduleResult.innerHTML = '<div class="alert alert-warning">No classes found for your selection.</div>';
@@ -160,113 +163,119 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Group by days
-        const dayOrder = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
-        const scheduleByDay = {};
+        // Sort by days
+        let dayOrder = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+        let scheduleByDay = {};
         
-        dayOrder.forEach(day => {
-            scheduleByDay[day] = filteredData.filter(item => item.day === day);
-        });
+        for (let d = 0; d < dayOrder.length; d++) {
+            let day = dayOrder[d];
+            scheduleByDay[day] = [];
+            
+            for (let i = 0; i < filteredData.length; i++) {
+                if (filteredData[i].day === day) {
+                    scheduleByDay[day].push(filteredData[i]);
+                }
+            }
+        }
 
-        // Generate HTML
-        let html = `
-            <div class="alert alert-success">
-                <h5><i class="fas fa-calendar-check"></i> Your Personal Schedule</h5>
-                <p class="mb-0"><strong>Year ${year}</strong> | <strong>Group ${group}</strong> | <strong>Class ${classNum}</strong></p>
-            </div>
-        `;
+        // Build HTML
+        let html = '<div class="alert alert-success">';
+        html += '<h5><i class="fas fa-calendar-check"></i> Your Personal Schedule</h5>';
+        html += '<p class="mb-0"><strong>Year ' + year + '</strong> | <strong>Group ' + group + '</strong> | <strong>Class ' + classNum + '</strong></p>';
+        html += '</div>';
 
-        dayOrder.forEach(day => {
-            const dayClasses = scheduleByDay[day];
+        for (let d = 0; d < dayOrder.length; d++) {
+            let day = dayOrder[d];
+            let dayClasses = scheduleByDay[day];
             
             if (dayClasses.length > 0) {
-                html += `
-                    <div class="card mb-3 shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0"><i class="fas fa-calendar-day"></i> ${day}</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th><i class="fas fa-clock"></i> Time</th>
-                                            <th><i class="fas fa-book"></i> Subject</th>
-                                            <th><i class="fas fa-door-open"></i> Room</th>
-                                            <th><i class="fas fa-user"></i> Instructor</th>
-                                            <th><i class="fas fa-tag"></i> Type</th>
-                                            <th><i class="fas fa-layer-group"></i> Division</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                `;
+                html += '<div class="card mb-3 shadow-sm">';
+                html += '<div class="card-header bg-primary text-white">';
+                html += '<h5 class="mb-0"><i class="fas fa-calendar-day"></i> ' + day + '</h5>';
+                html += '</div>';
+                html += '<div class="card-body p-0">';
+                html += '<div class="table-responsive">';
+                html += '<table class="table table-hover mb-0">';
+                html += '<thead class="table-light">';
+                html += '<tr>';
+                html += '<th><i class="fas fa-clock"></i> Time</th>';
+                html += '<th><i class="fas fa-book"></i> Subject</th>';
+                html += '<th><i class="fas fa-door-open"></i> Room</th>';
+                html += '<th><i class="fas fa-user"></i> Instructor</th>';
+                html += '<th><i class="fas fa-tag"></i> Type</th>';
+                html += '<th><i class="fas fa-layer-group"></i> Division</th>';
+                html += '</tr>';
+                html += '</thead>';
+                html += '<tbody>';
 
                 // Sort by time
-                dayClasses.sort((a, b) => {
-                    const timeA = a.time.split('-')[0];
-                    const timeB = b.time.split('-')[0];
-                    return timeA.localeCompare(timeB);
+                dayClasses.sort(function(a, b) {
+                    let timeA = a.time.split('-')[0];
+                    let timeB = b.time.split('-')[0];
+                    if (timeA < timeB) return -1;
+                    if (timeA > timeB) return 1;
+                    return 0;
                 });
 
-                dayClasses.forEach(classItem => {
-                    const badgeClass = getBadgeClass(classItem.type);
+                for (let c = 0; c < dayClasses.length; c++) {
+                    let classItem = dayClasses[c];
+                    let badgeClass = getBadgeClass(classItem.type);
+                    let courseJson = JSON.stringify(classItem).replace(/'/g, "&apos;");
                     
-                    html += `
-                        <tr class="course-row-clickable" onclick='showCourseDetails(${JSON.stringify(classItem).replace(/'/g, "&apos;")})'>
-                            <td><strong>${classItem.time}</strong></td>
-                            <td><strong class="text-primary">${classItem.subject}</strong></td>
-                            <td>${classItem.room}</td>
-                            <td>${classItem.instructor}</td>
-                            <td><span class="badge ${badgeClass}">${classItem.type}</span></td>
-                            <td>${classItem.classDiv}</td>
-                        </tr>
-                    `;
-                });
+                    html += '<tr class="course-row-clickable" onclick=\'showCourseDetails(' + courseJson + ')\'>';
+                    html += '<td><strong>' + classItem.time + '</strong></td>';
+                    html += '<td><strong class="text-primary">' + classItem.subject + '</strong></td>';
+                    html += '<td>' + classItem.room + '</td>';
+                    html += '<td>' + classItem.instructor + '</td>';
+                    html += '<td><span class="badge ' + badgeClass + '">' + classItem.type + '</span></td>';
+                    html += '<td>' + classItem.classDiv + '</td>';
+                    html += '</tr>';
+                }
 
-                html += `
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                html += '</tbody>';
+                html += '</table>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
             }
-        });
+        }
 
-        // Summary
-        html += `
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h6 class="card-title"><i class="fas fa-info-circle"></i> Schedule Summary</h6>
-                    <p class="mb-2"><strong>Total Classes:</strong> ${filteredData.length}</p>
-                    <p class="mb-2"><strong>Days:</strong> ${Object.values(scheduleByDay).filter(d => d.length > 0).length} days/week</p>
-                    <p class="mb-0 text-muted"><small><i class="fas fa-lightbulb"></i> Click on any class to view detailed course information</small></p>
-                </div>
-            </div>
-        `;
+        // Summary section
+        let daysWithClasses = 0;
+        for (let d = 0; d < dayOrder.length; d++) {
+            if (scheduleByDay[dayOrder[d]].length > 0) {
+                daysWithClasses++;
+            }
+        }
+
+        html += '<div class="card border-primary">';
+        html += '<div class="card-body">';
+        html += '<h6 class="card-title"><i class="fas fa-info-circle"></i> Schedule Summary</h6>';
+        html += '<p class="mb-2"><strong>Total Classes:</strong> ' + filteredData.length + '</p>';
+        html += '<p class="mb-2"><strong>Days:</strong> ' + daysWithClasses + ' days/week</p>';
+        html += '<p class="mb-0 text-muted"><small><i class="fas fa-lightbulb"></i> Click on any class to view detailed course information</small></p>';
+        html += '</div>';
+        html += '</div>';
 
         scheduleResult.innerHTML = html;
         scheduleResult.style.display = 'block';
         
-        // Smooth scroll to results
+        // Scroll to results
         scheduleResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    /**
-     * Get badge class for course type
-     */
+    // Get badge color for course type
     function getBadgeClass(type) {
-        switch(type) {
-            case 'Lecture':
-                return 'bg-primary';
-            case 'Lab':
-                return 'bg-success';
-            case 'Section':
-                return 'bg-info';
-            case 'Tutorial':
-                return 'bg-warning text-dark';
-            default:
-                return 'bg-secondary';
+        if (type === 'Lecture') {
+            return 'bg-primary';
+        } else if (type === 'Lab') {
+            return 'bg-success';
+        } else if (type === 'Section') {
+            return 'bg-info';
+        } else if (type === 'Tutorial') {
+            return 'bg-warning text-dark';
+        } else {
+            return 'bg-secondary';
         }
     }
 });
