@@ -33,48 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Hide/show navbar when scrolling
+// Add shadow to navbar when scrolling
 function initNavbarScroll() {
     let navbar = document.querySelector('.navbar');
     if (!navbar) return;
     
-    let lastScroll = 0;
-    let scrollThreshold = 5;
-    let scrollTimer;
-    
     window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimer);
-        
-        scrollTimer = setTimeout(function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Keep navbar visible at top
-            if (currentScroll <= 100) {
-                navbar.classList.remove('navbar-hidden');
-                navbar.classList.add('navbar-visible');
-                return;
-            }
-            
-            // Only hide/show if scroll is significant
-            if (Math.abs(currentScroll - lastScroll) < scrollThreshold) {
-                return;
-            }
-            
-            if (currentScroll > lastScroll) {
-                // Scrolling down
-                navbar.classList.add('navbar-hidden');
-                navbar.classList.remove('navbar-visible');
-            } else {
-                // Scrolling up
-                navbar.classList.remove('navbar-hidden');
-                navbar.classList.add('navbar-visible');
-            }
-            
-            lastScroll = currentScroll;
-        }, 10);
+        if (window.pageYOffset > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     }, { passive: true });
-    
-    navbar.classList.add('navbar-visible');
 }
 
 // Smooth scrolling for links
